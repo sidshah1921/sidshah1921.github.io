@@ -1,0 +1,1480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Siddharth Shah — Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{height:100%;overflow:hidden;cursor:none;}
+a,button,input,select,textarea,[onclick]{cursor:none!important;}
+
+/* CUSTOM SQUARE CURSOR */
+#sq-cursor{
+  position:fixed;pointer-events:none;z-index:99999;
+  width:26px;height:26px;
+  border:1.5px solid rgba(205,214,244,0.75);
+  transform:translate(-50%,-50%);
+  left:-100px;top:-100px;
+  transition:width .15s ease,height .15s ease,border-color .15s;
+}
+#sq-dot{
+  position:fixed;pointer-events:none;z-index:100000;
+  width:3px;height:3px;
+  background:rgba(205,214,244,1);
+  border-radius:50%;
+  transform:translate(-50%,-50%);
+  left:-100px;top:-100px;
+  transition:background .15s, width .1s, height .1s, transform .1s;
+}
+#sq-cursor.hovering{
+  width:36px;height:36px;
+  border-color:rgba(137,180,250,0.8);
+}
+#sq-cursor.clicking{ width:18px;height:18px;opacity:0.7; }
+#sq-dot.hovering{ background:rgba(137,180,250,1);width:4px;height:4px; }
+#sq-dot.clicking{ transform:translate(-50%,-50%) scale(2);opacity:0.5; }
+
+/* ── PAGE TRANSITION ── */
+.page{display:none;opacity:0;}
+.page.active{display:block;animation:pageIn .22s ease forwards;}
+#page-home{height:100%;overflow:hidden;display:none;opacity:0;}
+#page-home.active{display:flex;flex-direction:column;animation:pageIn .22s ease forwards;}
+@keyframes pageIn{
+  from{opacity:0;transform:translateY(10px);}
+  to{opacity:1;transform:translateY(0);}
+}
+:root{
+  --bg:#1e1e2e;
+  --sidebar:#181825;
+  --tabs:#11111b;
+  --tab-active:#1e1e2e;
+  --border:#313244;
+  --text:#cdd6f4;
+  --muted:#6c7086;
+  --pink:#f38ba8;
+  --green:#a6e3a1;
+  --blue:#89b4fa;
+  --yellow:#f9e2af;
+  --orange:#fab387;
+  --purple:#cba6f7;
+  --teal:#94e2d5;
+  --sky:#89dceb;
+  --accent:#f5c2e7;
+  --red:#f38ba8;
+  --font:'Geist Mono','JetBrains Mono',monospace;
+  --sw:220px;
+  --aw:48px;
+}
+body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:13px;display:flex;flex-direction:column;}
+
+/* TITLEBAR */
+.titlebar{height:34px;background:var(--tabs);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:center;flex-shrink:0;position:relative;-webkit-app-region:drag;}
+.dots{position:absolute;left:14px;display:flex;gap:7px;}
+.dot{width:12px;height:12px;border-radius:50%;}
+.dot-r{background:#ff5f57;}.dot-y{background:#febc2e;}.dot-g{background:#28c840;}
+.title-text{font-size:11.5px;color:var(--muted);}
+.menus{position:absolute;left:80px;display:flex;}
+.menu-item{font-size:11.5px;color:var(--muted);padding:0 10px;cursor:pointer;height:34px;display:flex;align-items:center;transition:color .15s,background .15s;}
+.menu-item:hover{color:var(--text);background:rgba(255,255,255,.06);}
+
+/* LAYOUT */
+.vsc-body{flex:1;display:flex;overflow:hidden;}
+
+/* ACTIVITY BAR */
+.actbar{width:var(--aw);background:var(--tabs);border-right:1px solid var(--border);display:flex;flex-direction:column;align-items:center;padding-top:4px;gap:1px;flex-shrink:0;}
+.act-icon{width:44px;height:44px;display:flex;align-items:center;justify-content:center;color:var(--muted);cursor:pointer;border-left:2px solid transparent;transition:color .15s,border-color .15s;font-size:19px;}
+.act-icon:hover{color:var(--text);}
+.act-icon.active{color:var(--text);border-left-color:var(--blue);}
+
+/* SIDEBAR */
+.sidebar{width:var(--sw);background:var(--sidebar);border-right:1px solid var(--border);display:flex;flex-direction:column;flex-shrink:0;overflow-y:auto;user-select:none;}
+.sidebar::-webkit-scrollbar{width:3px;}
+.sidebar::-webkit-scrollbar-thumb{background:var(--border);}
+.sb-title{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);padding:12px 14px 6px;}
+.sb-section{font-size:11px;font-weight:700;letter-spacing:.06em;color:var(--muted);padding:6px 14px 3px;display:flex;align-items:center;gap:5px;cursor:pointer;}
+.sb-section::before{content:'▾';font-size:9px;}
+.file-item{display:flex;align-items:center;gap:7px;padding:4px 14px 4px 26px;cursor:pointer;color:var(--muted);font-size:12.5px;border-left:2px solid transparent;transition:background .1s,color .1s;white-space:nowrap;}
+.file-item:hover{background:rgba(255,255,255,.05);color:var(--text);}
+.file-item.active{background:rgba(255,255,255,.08);color:var(--text);border-left-color:var(--blue);}
+.fi-icon{font-size:14px;flex-shrink:0;}
+.fi-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0;margin-left:auto;}
+.fi-building{background:var(--orange);animation:pulse 2s ease-in-out infinite;}
+@keyframes pulse{0%,100%{opacity:1;}50%{opacity:.4;}}
+
+/* EDITOR */
+.editor{flex:1;display:flex;flex-direction:column;overflow:hidden;}
+
+/* TABBAR */
+.tabbar{height:37px;background:var(--tabs);border-bottom:1px solid var(--border);display:flex;align-items:flex-end;overflow-x:auto;flex-shrink:0;}
+.tabbar::-webkit-scrollbar{display:none;}
+.tab{height:35px;padding:0 15px;display:flex;align-items:center;gap:8px;font-size:12px;cursor:pointer;border-right:1px solid var(--border);border-top:1px solid transparent;color:var(--muted);background:var(--tabs);white-space:nowrap;transition:color .15s;flex-shrink:0;}
+.tab:hover{color:var(--text);}
+.tab.active{background:var(--tab-active);color:var(--text);border-top-color:var(--blue);}
+.tab-close{font-size:10px;opacity:0;transition:opacity .15s;margin-left:4px;}
+.tab:hover .tab-close,.tab.active .tab-close{opacity:.6;}
+
+/* BREADCRUMB */
+.breadcrumb{height:25px;background:var(--bg);border-bottom:1px solid var(--border);display:flex;align-items:center;padding:0 14px;gap:4px;font-size:11.5px;color:var(--muted);flex-shrink:0;}
+.breadcrumb .bc-item{color:var(--text);}
+.bc-sep{opacity:.35;}
+
+/* EDITOR CONTENT */
+.editor-content{flex:1;overflow-y:auto;display:flex;}
+.editor-content::-webkit-scrollbar{width:6px;}
+.editor-content::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px;}
+
+/* LINE NUMBERS */
+.lnum{width:46px;padding:18px 0;text-align:right;color:var(--muted);font-size:12.5px;line-height:1.72;user-select:none;flex-shrink:0;opacity:.45;}
+.lnum div{padding-right:14px;}
+
+/* CODE AREA */
+.code{flex:1;padding:18px 28px 0 14px;line-height:1.72;font-size:13px;}
+/* Pages that scroll get their own bottom padding */
+.page.scrollable{padding-bottom:60px;}
+
+/* SYNTAX */
+.cm{color:var(--muted);font-style:italic;}
+.ck{color:var(--purple);}
+.cf{color:var(--blue);}
+.cs{color:var(--green);}
+.cv{color:var(--teal);}
+.cn{color:var(--orange);}
+.ct{color:var(--yellow);}
+.cp{color:var(--pink);}
+.ca{color:var(--accent);}
+.csk{color:var(--sky);}
+.cmu{color:var(--muted);}
+
+/* ── HOME ── */
+.hero-name{font-size:66px;font-weight:700;line-height:1.0;letter-spacing:-.02em;margin:20px 0 16px;}
+.hero-name .last{color:var(--pink);display:block;}
+.badges{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0;}
+.badge{display:inline-flex;align-items:center;gap:6px;padding:4px 12px;border:1px solid var(--border);border-radius:3px;font-size:12px;color:var(--text);}
+.bd{width:7px;height:7px;border-radius:50%;}
+.bd-pink{background:var(--pink);}.bd-blue{background:var(--blue);}.bd-green{background:var(--green);}.bd-purple{background:var(--purple);}.bd-teal{background:var(--teal);}
+.hero-bio{margin:16px 0;max-width:640px;line-height:1.85;color:rgba(205,214,244,0.85);font-size:13.5px;}
+.hero-bio b{color:#fff;font-weight:600;}
+.hero-bio .hl-blue{color:var(--blue);}
+.hero-bio .hl-green{color:var(--green);}
+.hero-bio .hl-teal{color:var(--teal);}
+.hero-bio .hl-orange{color:var(--orange);}
+.btns{display:flex;gap:10px;flex-wrap:wrap;margin:20px 0;}
+.vbtn{display:inline-flex;align-items:center;gap:7px;padding:7px 16px;border:1px solid var(--border);border-radius:3px;font-family:var(--font);font-size:12px;cursor:none;transition:all .15s;text-decoration:none;color:var(--text);}
+.vbtn-p{background:var(--blue);border-color:var(--blue);color:#11111b;font-weight:600;}
+.vbtn-p:hover{background:#a8c7fa;border-color:#a8c7fa;}
+.vbtn:hover:not(.vbtn-p){background:rgba(255,255,255,.06);border-color:var(--blue);color:var(--blue);}
+.stats-row{display:flex;border:1px solid var(--border);border-radius:4px;overflow:hidden;max-width:620px;margin:24px 0 18px;}
+.stat-cell{flex:1;padding:14px 18px;border-right:1px solid var(--border);text-align:center;}
+.stat-cell:last-child{border-right:none;}
+.stat-val{font-size:24px;font-weight:700;color:var(--text);line-height:1;margin-bottom:3px;}
+.stat-lbl{font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);}
+.socials{display:flex;flex-wrap:wrap;gap:7px;margin-top:8px;}
+.soc-btn{display:inline-flex;align-items:center;gap:6px;padding:4px 11px;border:1px solid rgba(205,214,244,0.2);border-radius:3px;font-size:11.5px;cursor:none;color:rgba(205,214,244,0.75);text-decoration:none;transition:all .15s;}
+.soc-btn:hover{color:var(--text);border-color:var(--blue);background:rgba(137,180,250,.07);}
+
+/* ── SECTION HEADER ── */
+.sec-comment{color:var(--muted);font-style:italic;margin-bottom:3px;}
+.sec-title{font-size:34px;font-weight:700;color:var(--text);margin:4px 0 3px;letter-spacing:-.02em;}
+.sec-sub{color:var(--muted);font-size:12.5px;margin-bottom:26px;}
+
+/* ── PROJECTS ── */
+.proj-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:13px;margin-top:6px;}
+.proj-card{border:1px solid var(--border);border-radius:4px;padding:18px;transition:border-color .2s,background .2s;position:relative;display:flex;flex-direction:column;}
+.proj-card:hover{border-color:var(--blue);background:rgba(137,180,250,.04);}
+.proj-card.building{border-color:rgba(250,179,135,.35);}
+.proj-card.building:hover{border-color:var(--orange);}
+.proj-emoji{font-size:20px;margin-bottom:9px;}
+.proj-cats{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:7px;align-items:center;}
+.proj-cat{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;}
+.cat-sep{color:var(--muted);font-size:10px;}
+.building-badge{display:inline-flex;align-items:center;gap:5px;padding:2px 8px;background:rgba(250,179,135,.12);border:1px solid rgba(250,179,135,.3);border-radius:2px;font-size:10px;color:var(--orange);margin-left:auto;}
+.building-dot{width:5px;height:5px;border-radius:50%;background:var(--orange);animation:pulse 1.5s ease-in-out infinite;}
+.proj-title{font-size:14.5px;font-weight:700;color:var(--text);margin-bottom:7px;line-height:1.3;}
+.proj-desc{font-size:11.5px;color:var(--muted);line-height:1.75;margin-bottom:13px;flex:1;}
+.proj-tags{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:12px;}
+.proj-tag{font-size:10.5px;padding:2px 7px;background:rgba(255,255,255,.05);border:1px solid var(--border);border-radius:2px;color:var(--muted);}
+.proj-links{display:flex;gap:7px;}
+.proj-link{font-size:11px;padding:3px 9px;border:1px solid var(--border);border-radius:2px;color:var(--muted);text-decoration:none;cursor:pointer;transition:color .15s,border-color .15s;display:flex;align-items:center;gap:5px;}
+.proj-link:hover{color:var(--blue);border-color:var(--blue);}
+
+/* ── SKILLS ── */
+.skills-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px 50px;margin-top:6px;}
+.sg-title{font-size:10.5px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);margin-bottom:13px;display:flex;align-items:center;gap:8px;}
+.sg-title::after{content:'';flex:1;height:1px;background:var(--border);}
+.sk-row{margin-bottom:10px;}
+.sk-hdr{display:flex;justify-content:space-between;margin-bottom:4px;}
+.sk-name{font-size:12.5px;color:var(--text);}
+.sk-pct{font-size:11.5px;font-weight:600;}
+.sk-bg{height:5px;background:rgba(255,255,255,.07);border-radius:3px;overflow:hidden;}
+.sk-fill{height:100%;border-radius:3px;transform:scaleX(0);transform-origin:left;transition:transform .9s cubic-bezier(.16,1,.3,1);}
+.sk-fill.go{transform:scaleX(1);}
+
+/* ── EXPERIENCE ── */
+.exp-timeline{position:relative;padding-left:22px;}
+.exp-timeline::before{content:'';position:absolute;left:0;top:4px;bottom:0;width:1px;background:linear-gradient(to bottom,var(--blue),transparent);}
+.exp-item{position:relative;padding-bottom:32px;}
+.exp-dot{position:absolute;left:-26px;top:5px;width:10px;height:10px;background:var(--blue);border-radius:50%;box-shadow:0 0 0 3px rgba(137,180,250,.18);}
+.exp-date{font-size:11px;color:var(--muted);letter-spacing:.08em;margin-bottom:3px;}
+.exp-role{font-size:14.5px;font-weight:700;color:var(--text);margin-bottom:2px;}
+.exp-co{font-size:12.5px;color:var(--pink);font-weight:600;margin-bottom:7px;}
+.exp-co span{color:var(--muted);font-weight:400;font-size:11.5px;}
+.exp-bullets{margin-left:0;padding-left:0;list-style:none;}
+.exp-bullets li{font-size:12px;color:var(--muted);line-height:1.75;margin-bottom:2px;display:flex;gap:8px;}
+.exp-bullets li::before{content:'▸';color:var(--blue);flex-shrink:0;margin-top:1px;}
+.exp-bullets li b{color:var(--text);font-weight:500;}
+.exp-tags{display:flex;flex-wrap:wrap;gap:4px;margin-top:10px;}
+.exp-tag{font-size:10px;padding:2px 7px;background:rgba(203,166,247,.1);border:1px solid rgba(203,166,247,.25);border-radius:2px;color:var(--purple);}
+
+/* ── ABOUT / README ── */
+.readme-section{margin-bottom:26px;}
+.readme-h1{font-size:26px;font-weight:700;color:var(--text);margin-bottom:6px;border-bottom:1px solid var(--border);padding-bottom:8px;}
+.readme-h2{font-size:16px;font-weight:700;color:var(--blue);margin-bottom:8px;margin-top:18px;}
+.readme-p{font-size:12.5px;color:var(--muted);line-height:1.8;margin-bottom:8px;}
+.readme-p b{color:var(--text);font-weight:500;}
+.readme-table{width:100%;border-collapse:collapse;margin:10px 0 16px;font-size:12px;}
+.readme-table td{padding:6px 12px;border:1px solid var(--border);color:var(--muted);vertical-align:top;}
+.readme-table td:first-child{color:var(--blue);font-weight:600;white-space:nowrap;}
+.pub-card{border:1px solid var(--border);border-radius:4px;padding:14px 16px;margin-top:8px;background:rgba(137,180,250,.04);}
+.pub-title{font-size:13px;font-weight:600;color:var(--blue);margin-bottom:4px;}
+.pub-meta{font-size:11.5px;color:var(--muted);}
+
+/* ── CONTACT ── */
+.contact-block{margin-top:12px;}
+.contact-line{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid var(--border);font-size:12.5px;}
+.contact-key{color:var(--muted);width:100px;flex-shrink:0;font-size:11.5px;}
+.contact-val{color:var(--text);}
+.contact-val a{color:var(--blue);text-decoration:none;}
+.contact-val a:hover{text-decoration:underline;}
+.avail-banner{display:inline-flex;align-items:center;gap:8px;padding:10px 16px;border:1px solid rgba(166,227,161,.3);background:rgba(166,227,161,.07);border-radius:4px;margin-top:18px;font-size:12.5px;color:var(--green);}
+.avail-dot{width:7px;height:7px;border-radius:50%;background:var(--green);animation:pulse 2s infinite;}
+
+/* STATUSBAR */
+.statusbar{height:26px;background:#007acc;display:flex;align-items:center;padding:0 14px;gap:16px;flex-shrink:0;}
+.sb-item{font-size:11.5px;color:rgba(255,255,255,.85);display:flex;align-items:center;gap:5px;}
+
+/* MINIMAP */
+.minimap{width:60px;background:rgba(0,0,0,.2);flex-shrink:0;opacity:.3;}
+
+/* SCROLLBAR */
+::-webkit-scrollbar{width:5px;height:5px;}
+::-webkit-scrollbar-thumb{background:var(--border);border-radius:2px;}
+::-webkit-scrollbar-track{background:transparent;}
+
+/* ── TERMINAL ── */
+.terminal-panel{height:200px;background:#11111b;border-top:1px solid var(--border);display:flex;flex-direction:column;flex-shrink:0;}
+.terminal-tabs{height:32px;background:var(--tabs);border-bottom:1px solid var(--border);display:flex;align-items:center;gap:0;padding:0 8px;flex-shrink:0;}
+.term-tab{padding:0 14px;height:32px;display:flex;align-items:center;font-size:11.5px;cursor:pointer;color:var(--muted);border-bottom:1px solid transparent;transition:color .15s;}
+.term-tab.active{color:var(--text);border-bottom-color:var(--blue);}
+.term-close{margin-left:auto;width:22px;height:22px;display:flex;align-items:center;justify-content:center;color:var(--muted);cursor:pointer;border-radius:3px;}
+.term-close:hover{background:rgba(255,255,255,.1);color:var(--text);}
+.terminal-body{flex:1;overflow-y:auto;padding:10px 14px;font-size:12.5px;line-height:1.65;}
+.terminal-body::-webkit-scrollbar{width:4px;}
+.terminal-body::-webkit-scrollbar-thumb{background:var(--border);}
+.t-line{margin-bottom:1px;}
+.t-prompt{color:var(--green);}
+.t-cmd{color:var(--text);}
+.t-out{color:var(--muted);}
+.t-hash{color:var(--yellow);}
+.t-branch{color:var(--blue);}
+.t-msg{color:var(--text);}
+.t-cursor{display:inline-block;width:7px;height:13px;background:var(--text);vertical-align:middle;animation:blink .8s step-end infinite;margin-left:2px;}
+@keyframes blink{0%,100%{opacity:1;}50%{opacity:0;}}
+.term-input-row{display:flex;align-items:center;gap:6px;margin-top:4px;}
+.term-input{background:transparent;border:none;outline:none;color:var(--text);font-family:var(--font);font-size:12.5px;flex:1;caret-color:var(--green);}
+
+/* ── COPILOT PANEL ── */
+.copilot-panel{width:300px;background:var(--sidebar);border-left:1px solid var(--border);display:flex;flex-direction:column;flex-shrink:0;}
+.copilot-header{padding:12px 14px 10px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:8px;}
+.copilot-avatar{width:28px;height:28px;background:linear-gradient(135deg,var(--purple),var(--blue));border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0;}
+.copilot-title{font-size:12px;font-weight:600;color:var(--text);}
+.copilot-sub{font-size:10.5px;color:var(--muted);}
+.copilot-workspace{padding:8px 14px;border-bottom:1px solid var(--border);font-size:10.5px;color:var(--muted);display:flex;align-items:center;gap:6px;}
+.ws-badge{padding:1px 6px;background:rgba(137,180,250,.12);border:1px solid rgba(137,180,250,.25);border-radius:2px;color:var(--blue);font-size:10px;}
+.copilot-msgs{flex:1;overflow-y:auto;padding:12px 14px;display:flex;flex-direction:column;gap:10px;}
+.copilot-msgs::-webkit-scrollbar{width:3px;}
+.copilot-msgs::-webkit-scrollbar-thumb{background:var(--border);}
+.cop-msg{font-size:12px;line-height:1.65;}
+.cop-msg-user{align-self:flex-end;background:rgba(137,180,250,.12);border:1px solid rgba(137,180,250,.2);border-radius:8px 8px 2px 8px;padding:7px 10px;color:var(--text);max-width:85%;}
+.cop-msg-bot{align-self:flex-start;background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:2px 8px 8px 8px;padding:7px 10px;color:var(--muted);max-width:95%;}
+.cop-msg-bot b{color:var(--text);font-weight:500;}
+.cop-chips{display:grid;grid-template-columns:1fr 1fr;gap:5px;margin-top:8px;}
+.cop-chip{padding:6px 8px;background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:4px;font-size:10.5px;color:var(--muted);cursor:pointer;transition:all .15s;text-align:left;line-height:1.4;}
+.cop-chip:hover{border-color:var(--blue);color:var(--text);background:rgba(137,180,250,.06);}
+.copilot-input-area{padding:10px 12px;border-top:1px solid var(--border);}
+.cop-input-wrap{display:flex;align-items:center;gap:6px;border:1px solid var(--border);border-radius:4px;padding:6px 10px;background:rgba(255,255,255,.03);}
+.cop-input{background:transparent;border:none;outline:none;color:var(--text);font-family:var(--font);font-size:11.5px;flex:1;}
+.cop-input::placeholder{color:var(--muted);}
+.cop-send{width:24px;height:24px;background:var(--blue);border:none;border-radius:3px;cursor:pointer;display:flex;align-items:center;justify-content:center;color:#11111b;font-size:12px;transition:background .15s;flex-shrink:0;}
+.cop-send:hover{background:#a8c7fa;}
+.cop-send:disabled{background:var(--border);cursor:not-allowed;color:var(--muted);}
+.cop-note{font-size:10px;color:var(--muted);text-align:center;margin-top:6px;opacity:.6;}
+.cop-typing{display:flex;gap:4px;align-items:center;padding:4px 2px;}
+.cop-typing span{width:5px;height:5px;background:var(--muted);border-radius:50%;animation:typing-bounce .9s ease-in-out infinite;}
+.cop-typing span:nth-child(2){animation-delay:.15s;}
+.cop-typing span:nth-child(3){animation-delay:.3s;}
+@keyframes typing-bounce{0%,60%,100%{transform:translateY(0);}30%{transform:translateY(-4px);}}
+
+/* ── COMMAND PALETTE ── */
+.palette-overlay{position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:2000;display:none;align-items:flex-start;justify-content:center;padding-top:80px;}
+.palette-overlay.open{display:flex;}
+.palette-box{background:#252535;border:1px solid var(--border);border-radius:6px;width:600px;max-width:90vw;box-shadow:0 20px 60px rgba(0,0,0,.7);overflow:hidden;display:flex;flex-direction:column;}
+.palette-input-row{display:flex;align-items:center;gap:8px;padding:10px 14px;border-bottom:1px solid var(--border);}
+.palette-prefix{color:var(--muted);font-size:13px;}
+.palette-input{background:transparent;border:none;outline:none;color:var(--text);font-family:var(--font);font-size:13px;flex:1;}
+.palette-input::placeholder{color:var(--muted);}
+.palette-esc{font-size:11px;color:var(--muted);border:1px solid var(--border);padding:2px 7px;border-radius:3px;}
+.palette-list{max-height:320px;overflow-y:auto;}
+.palette-list::-webkit-scrollbar{width:4px;}
+.palette-list::-webkit-scrollbar-thumb{background:var(--border);}
+.palette-section{font-size:10px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);padding:8px 14px 4px;}
+.palette-item{display:flex;align-items:center;gap:10px;padding:7px 14px;cursor:pointer;transition:background .1s;font-size:12.5px;}
+.palette-item:hover,.palette-item.selected{background:rgba(137,180,250,.15);}
+.palette-item.selected .pi-name{color:var(--blue);}
+.pi-icon{font-size:15px;flex-shrink:0;width:20px;text-align:center;}
+.pi-name{color:var(--text);flex:1;}
+.pi-path{font-size:11px;color:var(--muted);}
+.pi-kbd{font-size:11px;color:var(--muted);border:1px solid var(--border);padding:1px 6px;border-radius:3px;white-space:nowrap;}
+.palette-footer{padding:7px 14px;border-top:1px solid var(--border);display:flex;align-items:center;gap:16px;font-size:10.5px;color:var(--muted);}
+.pf-key{color:var(--text);}
+
+/* ── DROPDOWN MENUS ── */
+.menu-wrap{position:relative;}
+.dropdown{position:absolute;top:34px;left:0;background:#252535;border:1px solid var(--border);border-radius:4px;box-shadow:0 8px 24px rgba(0,0,0,.5);z-index:1000;min-width:200px;padding:4px 0;display:none;}
+.dropdown.open{display:block;}
+.dd-item{padding:5px 16px;font-size:12px;color:var(--muted);cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:20px;transition:background .1s,color .1s;}
+.dd-item:hover{background:rgba(137,180,250,.1);color:var(--text);}
+.dd-item.dd-header{font-size:10px;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);opacity:.5;pointer-events:none;padding-top:10px;}
+.dd-item.dd-sep{height:1px;background:var(--border);margin:4px 0;padding:0;}
+.dd-kbd{font-size:10.5px;color:var(--muted);opacity:.7;}
+
+</style>
+</head>
+<body>
+
+<!-- TITLE BAR -->
+<div class="titlebar">
+  <div class="dots">
+    <div class="dot dot-r"></div>
+    <div class="dot dot-y"></div>
+    <div class="dot dot-g"></div>
+  </div>
+  <div class="menus">
+    <div class="menu-wrap">
+      <div class="menu-item" onclick="toggleMenu('menu-file')">File</div>
+      <div class="dropdown" id="menu-file">
+        <div class="dd-item"><span>New Tab</span><span class="dd-kbd">Ctrl+T</span></div>
+        <div class="dd-item" onclick="openPalette()"><span>Open File…</span><span class="dd-kbd">Ctrl+P</span></div>
+        <div class="dd-item dd-sep"></div>
+        <div class="dd-item dd-header">Open Recent</div>
+        <div class="dd-item" onclick="switchPage('home','home.tsx','tsx')">home.tsx</div>
+        <div class="dd-item" onclick="switchPage('projects','projects.js','js')">projects.js</div>
+        <div class="dd-item" onclick="switchPage('skills','skills.json','json')">skills.json</div>
+        <div class="dd-item" onclick="switchPage('experience','experience.ts','ts')">experience.ts</div>
+        <div class="dd-item dd-sep"></div>
+        <div class="dd-item" onclick="window.open('https://github.com/sidshah1921','_blank')"><span>Download Resume</span></div>
+        <div class="dd-item"><span>Close Tab</span><span class="dd-kbd">Ctrl+W</span></div>
+      </div>
+    </div>
+    <div class="menu-wrap">
+      <div class="menu-item" onclick="toggleMenu('menu-edit')">Edit</div>
+      <div class="dropdown" id="menu-edit">
+        <div class="dd-item"><span>Undo</span><span class="dd-kbd">Ctrl+Z</span></div>
+        <div class="dd-item"><span>Redo</span><span class="dd-kbd">Ctrl+Y</span></div>
+        <div class="dd-item dd-sep"></div>
+        <div class="dd-item"><span>Find</span><span class="dd-kbd">Ctrl+F</span></div>
+        <div class="dd-item"><span>Copy</span><span class="dd-kbd">Ctrl+C</span></div>
+      </div>
+    </div>
+    <div class="menu-wrap">
+      <div class="menu-item" onclick="toggleMenu('menu-view')">View</div>
+      <div class="dropdown" id="menu-view">
+        <div class="dd-item" onclick="toggleTerminal()"><span>Toggle Terminal</span><span class="dd-kbd">Ctrl+`</span></div>
+        <div class="dd-item" onclick="toggleCopilot()"><span>Toggle Copilot</span></div>
+        <div class="dd-item dd-sep"></div>
+        <div class="dd-item"><span>Zoom In</span><span class="dd-kbd">Ctrl++</span></div>
+        <div class="dd-item"><span>Zoom Out</span><span class="dd-kbd">Ctrl+-</span></div>
+      </div>
+    </div>
+    <div class="menu-wrap">
+      <div class="menu-item" onclick="toggleMenu('menu-go')">Go</div>
+      <div class="dropdown" id="menu-go">
+        <div class="dd-item" onclick="openPalette()">Go to File…<span class="dd-kbd">Ctrl+P</span></div>
+        <div class="dd-item dd-header">Files</div>
+        <div class="dd-item" onclick="switchPage('home','home.tsx','tsx')">home.tsx</div>
+        <div class="dd-item" onclick="switchPage('about','README.md','md')">README.md</div>
+        <div class="dd-item" onclick="switchPage('projects','projects.js','js')">projects.js</div>
+        <div class="dd-item" onclick="switchPage('skills','skills.json','json')">skills.json</div>
+        <div class="dd-item" onclick="switchPage('experience','experience.ts','ts')">experience.ts</div>
+        <div class="dd-item" onclick="switchPage('contact','contact.css','css')">contact.css</div>
+        <div class="dd-item" onclick="switchPage('safelanding','safelanding.py','py')">safelanding.py</div>
+        <div class="dd-item" onclick="switchPage('atelier','atelier.ts','ts')">atelier.ts</div>
+      </div>
+    </div>
+    <div class="menu-wrap">
+      <div class="menu-item" onclick="toggleMenu('menu-run')">Run</div>
+      <div class="dropdown" id="menu-run">
+        <div class="dd-item"><span>Start Debugging</span><span class="dd-kbd">F5</span></div>
+        <div class="dd-item"><span>Run Without Debugging</span><span class="dd-kbd">Ctrl+F5</span></div>
+      </div>
+    </div>
+    <div class="menu-wrap">
+      <div class="menu-item" onclick="toggleTerminal()">Terminal</div>
+    </div>
+  </div>
+  <span class="title-text">sidshah1921 : portfolio — Visual Studio Code</span>
+</div>
+
+<div class="vsc-body">
+
+  <!-- ACTIVITY BAR -->
+  <div class="actbar">
+    <div class="act-icon active" title="Explorer">
+      <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+    </div>
+    <div class="act-icon" title="Search (Ctrl+P)" onclick="openPalette()">
+      <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+    </div>
+    <div class="act-icon" title="Source Control">
+      <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="12" r="3"/><path d="M6 9v6M9 12h6"/></svg>
+    </div>
+    <div class="act-icon" title="Extensions">
+      <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2" y="2" width="9" height="9" rx="1"/><rect x="13" y="2" width="9" height="9" rx="1"/><rect x="2" y="13" width="9" height="9" rx="1"/><rect x="13" y="13" width="9" height="9" rx="1"/></svg>
+    </div>
+  </div>
+
+  <!-- SIDEBAR -->
+  <div class="sidebar">
+    <div class="sb-title">Explorer</div>
+    <div class="sb-section">PORTFOLIO</div>
+    <div class="file-item active" data-page="home">
+      <span class="fi-icon">⚛️</span> home.tsx
+    </div>
+    <div class="file-item" data-page="about">
+      <span class="fi-icon">📄</span> README.md
+    </div>
+    <div class="file-item" data-page="projects">
+      <span class="fi-icon">📦</span> projects.js
+    </div>
+    <div class="file-item" data-page="skills">
+      <span class="fi-icon">🔧</span> skills.json
+    </div>
+    <div class="file-item" data-page="experience">
+      <span class="fi-icon">💼</span> experience.ts
+    </div>
+    <div class="file-item" data-page="contact">
+      <span class="fi-icon">📬</span> contact.css
+    </div>
+    <div style="height:14px;"></div>
+    <div class="sb-section">BUILDING</div>
+    <div class="file-item" data-page="safelanding" style="color:var(--orange)">
+      <span class="fi-icon">🏠</span> safelanding.py
+      <div class="fi-dot fi-building"></div>
+    </div>
+    <div class="file-item" data-page="atelier" style="color:var(--orange)">
+      <span class="fi-icon">💎</span> atelier.ts
+      <div class="fi-dot fi-building"></div>
+    </div>
+  </div>
+
+  <!-- EDITOR + TERMINAL COLUMN -->
+  <div style="flex:1;display:flex;flex-direction:column;overflow:hidden;">
+  <!-- EDITOR -->
+  <div class="editor" style="flex:1;min-height:0;">
+
+    <!-- TAB BAR -->
+    <div class="tabbar" id="tabbar">
+      <div class="tab active" id="tab-home" onclick="switchPage('home','home.tsx','tsx')">
+        <span>⚛️</span> home.tsx <span class="tab-close">✕</span>
+      </div>
+    </div>
+
+    <!-- BREADCRUMB -->
+    <div class="breadcrumb" id="breadcrumb">
+      <span>sidshah1921</span><span class="bc-sep">›</span><span>src</span><span class="bc-sep">›</span><span class="bc-item" id="bc-file">home.tsx</span>
+    </div>
+
+    <!-- CONTENT -->
+    <div class="editor-content">
+      <div class="lnum" id="lnum"></div>
+
+      <div class="code">
+
+        <!-- ═══════════ HOME ═══════════ -->
+        <div class="page active" id="page-home">
+          <div class="cm">// home.tsx — welcome to my portfolio</div>
+          <br>
+          <div class="hero-name">
+            Siddharth
+            <span class="last">Shah</span>
+          </div>
+          <div class="badges">
+            <div class="badge"><div class="bd bd-blue"></div> Data &amp; ML Engineer</div>
+            <div class="badge"><div class="bd bd-green"></div> Data Scientist</div>
+            <div class="badge"><div class="bd bd-purple"></div> BI &amp; Analytics</div>
+            <div class="badge"><div class="bd bd-teal"></div> MLOps</div>
+            <div class="badge"><div class="bd bd-pink"></div> @ Avitan · NYC</div>
+          </div>
+          <div class="hero-bio">
+            <span class="cm">/**</span><br>
+            &nbsp;* I live at the crossroads of <span class="hl-blue">data engineering</span>, <span class="hl-green">machine learning</span>, and <span class="hl-teal">business intelligence</span>.<br>
+            &nbsp;* I build systems that are genuinely intelligent and scalable — from ETL pipelines<br>
+            &nbsp;* and predictive models to LLM-powered applications and real-time dashboards.<br>
+            &nbsp;* Currently building two products: <span class="hl-orange">SafeLanding</span> &amp; <span class="hl-orange">Atelier</span>.<br>
+            &nbsp;<span class="cm">*/</span>
+          </div>
+          <div class="btns">
+            <a href="#" onclick="switchPage('projects');return false;" class="vbtn vbtn-p">⚡ Projects</a>
+            <a href="#" onclick="switchPage('about');return false;" class="vbtn">👤 About Me</a>
+            <a href="#" onclick="switchPage('contact');return false;" class="vbtn">✉ Contact</a>
+          </div>
+          <div class="stats-row">
+            <div class="stat-cell"><div class="stat-val">4+</div><div class="stat-lbl">Years Exp.</div></div>
+            <div class="stat-cell"><div class="stat-val">10+</div><div class="stat-lbl">Projects</div></div>
+            <div class="stat-cell"><div class="stat-val">IEEE</div><div class="stat-lbl">Published</div></div>
+            <div class="stat-cell"><div class="stat-val">∞</div><div class="stat-lbl">Curiosity</div></div>
+          </div>
+          <div class="socials">
+            <a href="https://github.com/sidshah1921" target="_blank" class="soc-btn">🐙 GitHub</a>
+            <a href="https://www.linkedin.com/in/siddharth-shah-02bb34143/" target="_blank" class="soc-btn">🔗 LinkedIn</a>
+            <a href="https://public.tableau.com/app/profile/siddharth.shah7887/vizzes" target="_blank" class="soc-btn">📊 Tableau</a>
+            <a href="mailto:hisiddharth09@gmail.com" class="soc-btn">✉ Email</a>
+            <a href="https://www.nyu.edu" target="_blank" class="soc-btn">🎓 NYU MS</a>
+          </div>
+        </div>
+
+        <!-- ═══════════ ABOUT / README ═══════════ -->
+        <div class="page scrollable" id="page-about">
+          <div class="cm"># README.md — Siddharth Shah</div>
+          <br>
+          <div class="readme-section">
+            <div class="readme-h1">👋 Hi, I'm Siddharth Shah</div>
+            <div class="readme-p">
+              Data & ML professional with <b>4+ years of experience</b> across software, finance, and operations. 
+              I specialize in building end-to-end data systems — from <b>ETL pipelines and data warehouses</b> to 
+              <b>ML models and NLP applications</b>. Currently based in <b>New York City</b>, working at <b>Avitan</b> 
+              as a Data and Operations Analyst.
+            </div>
+            <div class="readme-p">
+              I hold an <b>MS in Computer Engineering from NYU</b> (GPA 3.8) and a BE in Information Technology 
+              from Gujarat Technological University (GPA 3.9). Proficient in Python, SQL, Tableau, and AWS — 
+              with deep expertise in predictive analytics, market analysis, and advanced reporting.
+            </div>
+          </div>
+          <div class="readme-section">
+            <div class="readme-h2">🎯 What I Do</div>
+            <table class="readme-table">
+              <tr><td>🧠 ML &amp; AI</td><td>LLMs, RAG architectures, NLP pipelines, deep learning (CNN, RNN, Transformers), recommender systems</td></tr>
+              <tr><td>🗄️ Data Eng.</td><td>ETL/ELT with Airflow, AWS Glue, dbt; warehousing on Snowflake, Redshift, BigQuery</td></tr>
+              <tr><td>📊 Analytics</td><td>Tableau, Power BI, Looker dashboards; statistical modeling, A/B testing, causal inference</td></tr>
+              <tr><td>☁️ Cloud</td><td>AWS (S3, EC2, SageMaker, Redshift), GCP (BigQuery), Azure (Data Factory, Synapse)</td></tr>
+              <tr><td>🚀 Building</td><td>SafeLanding (full-stack, Python/React/PostgreSQL) + Atelier (cloud ERP, React/FastAPI/Supabase)</td></tr>
+            </table>
+          </div>
+          <div class="readme-section">
+            <div class="readme-h2">📚 Publication</div>
+            <div class="pub-card">
+              <div class="pub-title">Machine Learning in Medicine: Diagnosis of Skin Cancer using SVM Classifier</div>
+              <div class="pub-meta">IEEE Book Chapter · "Computational Intelligence based Solutions for Vision System" · Co-authored</div>
+            </div>
+          </div>
+          <div class="readme-section">
+            <div class="readme-h2">🎓 Education</div>
+            <table class="readme-table">
+              <tr><td>NYU</td><td>M.S. Computer Engineering · GPA 3.8/4.0 · New York, NY · 2022–2024</td></tr>
+              <tr><td>GTU</td><td>B.E. Information Technology · GPA 3.9/4.0 · Ahmedabad, India · 2018–2022</td></tr>
+            </table>
+          </div>
+        </div>
+
+        <!-- ═══════════ PROJECTS ═══════════ -->
+        <div class="page scrollable" id="page-projects">
+          <div class="cm">// projects.js — things I've built &amp; shipped</div>
+          <br>
+          <div class="sec-title">Projects</div>
+          <div class="sec-sub"><span class="cmu">const projects = [ ...shipped, ...building ]</span></div>
+          <div class="proj-grid">
+
+            <!-- SafeLanding -->
+            <div class="proj-card building">
+              <div class="proj-emoji">🏠</div>
+              <div class="proj-cats">
+                <span class="proj-cat" style="color:var(--blue)">Full Stack</span>
+                <span class="cat-sep">·</span>
+                <span class="proj-cat" style="color:var(--green)">Community</span>
+                <div class="building-badge"><div class="building-dot"></div> building</div>
+              </div>
+              <div class="proj-title">SafeLanding</div>
+              <p class="proj-desc">Helping international students find roommates, apartments, and community in NYC. A full-stack web platform connecting students with verified housing and a trusted social network for newcomers navigating the city.</p>
+              <div class="proj-tags">
+                <span class="proj-tag">Python</span><span class="proj-tag">React</span><span class="proj-tag">PostgreSQL</span><span class="proj-tag">Full Stack</span>
+              </div>
+              <div class="proj-links">
+                <span class="proj-link">🚧 In Progress</span>
+              </div>
+            </div>
+
+            <!-- Atelier -->
+            <div class="proj-card building">
+              <div class="proj-emoji">💎</div>
+              <div class="proj-cats">
+                <span class="proj-cat" style="color:var(--orange)">Cloud ERP</span>
+                <span class="cat-sep">·</span>
+                <span class="proj-cat" style="color:var(--purple)">AI · B2B</span>
+                <div class="building-badge"><div class="building-dot"></div> building</div>
+              </div>
+              <div class="proj-title">Atelier</div>
+              <p class="proj-desc">Modern multi-tenant cloud ERP for diamond wholesalers, replacing $80B industry legacy software. AI-powered natural language reporting, RapNet integration, and real-time inventory management for the global diamond trade.</p>
+              <div class="proj-tags">
+                <span class="proj-tag">React</span><span class="proj-tag">FastAPI</span><span class="proj-tag">Supabase</span><span class="proj-tag">AI/NLP</span><span class="proj-tag">RapNet</span>
+              </div>
+              <div class="proj-links">
+                <span class="proj-link">🚧 In Progress</span>
+              </div>
+            </div>
+
+            <!-- Neuralearn -->
+            <div class="proj-card">
+              <div class="proj-emoji">🧠</div>
+              <div class="proj-cats">
+                <span class="proj-cat" style="color:var(--purple)">NLP</span>
+                <span class="cat-sep">·</span>
+                <span class="proj-cat" style="color:var(--blue)">Full Stack</span>
+                <span class="cat-sep">·</span>
+                <span class="proj-cat" style="color:var(--green)">LLM</span>
+              </div>
+              <div class="proj-title">Neuralearn — AI Personalized Learning</div>
+              <p class="proj-desc">AI-powered tutoring platform using Claude 3.5 for real-time conversational support and dynamic lesson plans. Multi-turn chat, structured lesson cards, session history. Achieves 4.3/5 user satisfaction with sub-second response latency.</p>
+              <div class="proj-tags">
+                <span class="proj-tag">Python</span><span class="proj-tag">Flask</span><span class="proj-tag">Claude 3.5</span><span class="proj-tag">Tailwind</span><span class="proj-tag">MySQL</span>
+              </div>
+              <div class="proj-links">
+                <a href="https://github.com/sidshah1921/Neuralearn-AI-Powered-Personalized-Learning-Assistant" target="_blank" class="proj-link">🐙 GitHub ↗</a>
+              </div>
+            </div>
+
+            <!-- RAG Property -->
+            <div class="proj-card">
+              <div class="proj-emoji">🏘️</div>
+              <div class="proj-cats">
+                <span class="proj-cat" style="color:var(--pink)">RAG</span>
+                <span class="cat-sep">·</span>
+                <span class="proj-cat" style="color:var(--teal)">NLP</span>
+                <span class="cat-sep">·</span>
+                <span class="proj-cat" style="color:var(--orange)">AWS</span>
+              </div>
+              <div class="proj-title">RAG-NLP Property Recommendations</div>
+              <p class="proj-desc">Retrieval-augmented system combining LLMs and FAISS vector search for intelligent property suggestions based on semantic similarity. Deployed real-time API on AWS using Mistral-7B. Trained on 279K+ Airbnb listings across global cities.</p>
+              <div class="proj-tags">
+                <span class="proj-tag">Python</span><span class="proj-tag">HuggingFace</span><span class="proj-tag">LangChain</span><span class="proj-tag">FAISS</span><span class="proj-tag">AWS</span><span class="proj-tag">Mistral-7B</span>
+              </div>
+              <div class="proj-links">
+                <a href="https://github.com/sidshah1921/RAG-NLP-for-Intelligent-Property-Recommendations" target="_blank" class="proj-link">🐙 GitHub ↗</a>
+              </div>
+            </div>
+
+            <!-- NYC Taxi -->
+            <div class="proj-card">
+              <div class="proj-emoji">🚕</div>
+              <div class="proj-cats">
+                <span class="proj-cat" style="color:var(--yellow)">Data Eng.</span>
+                <span class="cat-sep">·</span>
+                <span class="proj-cat" style="color:var(--blue)">GCP</span>
+                <span class="cat-sep">·</span>
+                <span class="proj-cat" style="color:var(--teal)">Tableau</span>
+              </div>
+              <div class="proj-title">NYC Taxi Insights</div>
+              <p class="proj-desc">End-to-end data analytics pipeline on NYC yellow taxi TLC data. Python/Pandas for cleaning, GCP Cloud Storage + BigQuery for scalable querying of large datasets, Tableau for dynamic visualizations and key insights extraction.</p>
+              <div class="proj-tags">
+                <span class="proj-tag">Python</span><span class="proj-tag">Pandas</span><span class="proj-tag">BigQuery</span><span class="proj-tag">GCP</span><span class="proj-tag">SQL</span><span class="proj-tag">Tableau</span>
+              </div>
+              <div class="proj-links">
+                <a href="https://github.com/sidshah1921/NYC-Taxi-Insights" target="_blank" class="proj-link">🐙 GitHub ↗</a>
+                <a href="https://public.tableau.com/app/profile/siddharth.shah7887/vizzes" target="_blank" class="proj-link">📊 Dashboard ↗</a>
+              </div>
+            </div>
+
+            <!-- eCommerce LTV -->
+            <div class="proj-card">
+              <div class="proj-emoji">🛒</div>
+              <div class="proj-cats">
+                <span class="proj-cat" style="color:var(--green)">ML</span>
+                <span class="cat-sep">·</span>
+                <span class="proj-cat" style="color:var(--pink)">Clustering</span>
+                <span class="cat-sep">·</span>
+                <span class="proj-cat" style="color:var(--orange)">Forecasting</span>
+              </div>
+              <div class="proj-title">Predicting e-Commerce Customer LTV</div>
+              <p class="proj-desc">Customer segmentation and LTV prediction using K-Means clustering and RFM analysis. XGBoost + Random Forest with GridSearchCV achieved 92.01% predictive accuracy. Directly optimized targeted marketing strategies and campaign ROI.</p>
+              <div class="proj-tags">
+                <span class="proj-tag">Python</span><span class="proj-tag">XGBoost</span><span class="proj-tag">Random Forest</span><span class="proj-tag">K-Means</span><span class="proj-tag">RFM</span>
+              </div>
+              <div class="proj-links">
+                <a href="https://github.com/sidshah1921" target="_blank" class="proj-link">🐙 GitHub ↗</a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- ═══════════ SKILLS ═══════════ -->
+        <div class="page scrollable" id="page-skills">
+          <div class="cm">// skills.json — tech stack &amp; tools I actually use</div>
+          <br>
+          <div class="sec-title">Skills</div>
+          <div class="sec-sub"><span class="cmu">{ "status": "always_learning", "passion": "immeasurable" }</span></div>
+          <div class="skills-grid">
+
+            <div>
+              <div class="sg-title">Languages</div>
+              <div class="sk-row"><div class="sk-hdr"><span class="sk-name">Python</span><span class="sk-pct" style="color:var(--blue)">95%</span></div><div class="sk-bg"><div class="sk-fill" style="width:95%;background:var(--blue);"></div></div></div>
+              <div class="sk-row"><div class="sk-hdr"><span class="sk-name">SQL</span><span class="sk-pct" style="color:var(--green)">90%</span></div><div class="sk-bg"><div class="sk-fill" style="width:90%;background:var(--green);"></div></div></div>
+              <div class="sk-row"><div class="sk-hdr"><span class="sk-name">R</span><span class="sk-pct" style="color:var(--yellow)">72%</span></div><div class="sk-bg"><div class="sk-fill" style="width:72%;background:var(--yellow);"></div></div></div>
+              <div class="sk-row"><div class="sk-hdr"><span class="sk-name">Java</span><span class="sk-pct" style="color:var(--orange)">68%</span></div><div class="sk-bg"><div class="sk-fill" style="width:68%;background:var(--orange);"></div></div></div>
+              <div class="sk-row"><div class="sk-hdr"><span class="sk-name">Bash</span><span class="sk-pct" style="color:var(--teal)">70%</span></div><div class="sk-bg"><div class="sk-fill" style="width:70%;background:var(--teal);"></div></div></div>
+            </div>
+
+            <div>
+              <div class="sg-title">AI · ML · Data Science</div>
+              <div class="sk-row"><div class="sk-hdr"><span class="sk-name">scikit-learn</span><span class="sk-pct" style="color:var(--orange)">92%</span></div><div class="sk-bg"><div class="sk-fill" style="width:92%;background:var(--orange);"></div></div></div>
+              <div class="sk-row"><div class="sk-hdr"><span class="sk-name">PyTorch / TensorFlow</span><span class="sk-pct" style="color:var(--pink)">82%</span></div><div class="sk-bg"><div class="sk-fill" style="width:82%;background:var(--pink);"></div></div></div>
+              <div class="sk-row"><div class="sk-hdr"><span class="sk-name">XGBoost / RandomForest</span><span class="sk-pct" style="color:var(--green)">90%</span></div><div class="sk-bg"><div class="sk-fill" style="width:90%;background:var(--green);"></div></div></div>
+              <div class="sk-row"><div class="sk-hdr"><span class="sk-name">HuggingFace / NLP</span><span class="sk-pct" style="color:var(--purple)">84%</span></div><div class="sk-bg"><div class="sk-fill" style="width:84%;background:var(--purple);"></div></div></div>
+              <div class="sk-row"><div class="sk-hdr"><span class="sk-name">LangChain / RAG</span><span class="sk-pct" style="color:var(--teal)">80%</span></div><div class="sk-bg"><div class="sk-fill" style="width:80%;background:var(--teal);"></div></div></div>
+            </div>
+
+            <div>
+              <div class="sg-title">Data Engineering</div>
+              <div class="sk-row"><div class="sk-hdr"><span class="sk-name">Airflow</span><span class="sk-pct" style="color:var(--blue)">85%</span></div><div class="sk-bg"><div class="sk-fill" style="width:85%;background:var(--blue);"></div></div></div>
+              <div class="sk-row"><div class="sk-hdr"><span class="sk-name">Snowflake / BigQuery</span><span class="sk-pct" style="color:var(--green)">88%</span></div><div class="sk-bg"><div class="sk-fill" style="width:88%;background:var(--green);"></div></div></div>
+              <div class="sk-row"><div class="sk-hdr"><span class="sk-name">Spark / Hadoop</span><span class="sk-pct" style="color:var(--yellow)">75%</span></div><div class="sk-bg"><div class="sk-fill" style="width:75%;background:var(--yellow);"></div></div></div>
+              <div class="sk-row"><div class="sk-hdr"><span class="sk-name">dbt</span><span class="sk-pct" style="color:var(--orange)">78%</span></div><div class="sk-bg"><div class="sk-fill" style="width:78%;background:var(--orange);"></div></div></div>
+              <div class="sk-row"><div class="sk-hdr"><span class="sk-name">PostgreSQL / MySQL</span><span class="sk-pct" style="color:var(--teal)">90%</span></div><div class="sk-bg"><div class="sk-fill" style="width:90%;background:var(--teal);"></div></div></div>
+            </div>
+
+            <div>
+              <div class="sg-title">Cloud · Infra · Visualization</div>
+              <div class="sk-row"><div class="sk-hdr"><span class="sk-name">AWS (S3, EC2, SageMaker)</span><span class="sk-pct" style="color:var(--orange)">85%</span></div><div class="sk-bg"><div class="sk-fill" style="width:85%;background:var(--orange);"></div></div></div>
+              <div class="sk-row"><div class="sk-hdr"><span class="sk-name">GCP (BigQuery, Storage)</span><span class="sk-pct" style="color:var(--blue)">80%</span></div><div class="sk-bg"><div class="sk-fill" style="width:80%;background:var(--blue);"></div></div></div>
+              <div class="sk-row"><div class="sk-hdr"><span class="sk-name">Tableau</span><span class="sk-pct" style="color:var(--pink)">92%</span></div><div class="sk-bg"><div class="sk-fill" style="width:92%;background:var(--pink);"></div></div></div>
+              <div class="sk-row"><div class="sk-hdr"><span class="sk-name">Power BI</span><span class="sk-pct" style="color:var(--yellow)">82%</span></div><div class="sk-bg"><div class="sk-fill" style="width:82%;background:var(--yellow);"></div></div></div>
+              <div class="sk-row"><div class="sk-hdr"><span class="sk-name">Docker / Kubernetes</span><span class="sk-pct" style="color:var(--teal)">76%</span></div><div class="sk-bg"><div class="sk-fill" style="width:76%;background:var(--teal);"></div></div></div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- ═══════════ EXPERIENCE ═══════════ -->
+        <div class="page scrollable" id="page-experience">
+          <div class="cm">// experience.ts — where I've worked &amp; what I built</div>
+          <br>
+          <div class="sec-title">Experience</div>
+          <div class="sec-sub"><span class="cmu">type Career = { role: string; impact: string; stack: string[] }[]</span></div>
+          <div class="exp-timeline">
+
+            <div class="exp-item">
+              <div class="exp-dot"></div>
+              <div class="exp-date">Jan 2025 — Present</div>
+              <div class="exp-role">Data &amp; Operations Analyst</div>
+              <div class="exp-co">Avitan <span>· New York, NY</span></div>
+              <ul class="exp-bullets">
+                <li>Designed predictive analytics &amp; performance monitoring models; enabled leadership to track strategic KPIs across trading performance and inventory turnover</li>
+                <li>Led firm-wide market &amp; pricing strategy analysis leveraging RAPNET and transactional data — drove <b>22% increase in profit margins</b> across high-volume product lines</li>
+                <li>Automated end-to-end stock and transaction management (AWS S3, PostgreSQL, Airflow), improving platform visibility and resource allocation</li>
+                <li>Built dynamic pricing models and forecasting frameworks for global supplier contracts</li>
+              </ul>
+              <div class="exp-tags">
+                <span class="exp-tag">Python</span><span class="exp-tag">SQL</span><span class="exp-tag">Tableau</span><span class="exp-tag">AWS S3</span><span class="exp-tag">PostgreSQL</span><span class="exp-tag">Airflow</span><span class="exp-tag">RAPNET</span>
+              </div>
+            </div>
+
+            <div class="exp-item">
+              <div class="exp-dot"></div>
+              <div class="exp-date">May 2024 — Dec 2024</div>
+              <div class="exp-role">Specialist — Data Analysis</div>
+              <div class="exp-co">Maitri Solutions <span>· New York, NY</span></div>
+              <ul class="exp-bullets">
+                <li>Built executive-level Tableau &amp; Power BI dashboards tracking real-time operational and financial KPIs</li>
+                <li>Developed statistical models (Statsmodels) to quantify operational risks and market volatility for executive decision-making</li>
+                <li>Automated large-scale data ingestion and reporting with SQL + Docker-based systems — <b>reduced manual effort by 70%</b></li>
+                <li>Designed and implemented a data quality framework improving reliability across departments</li>
+              </ul>
+              <div class="exp-tags">
+                <span class="exp-tag">Tableau</span><span class="exp-tag">Power BI</span><span class="exp-tag">Python</span><span class="exp-tag">Statsmodels</span><span class="exp-tag">SQL</span><span class="exp-tag">Docker</span>
+              </div>
+            </div>
+
+            <div class="exp-item">
+              <div class="exp-dot"></div>
+              <div class="exp-date">Jun 2023 — Jan 2024</div>
+              <div class="exp-role">Data Scientist (Internship)</div>
+              <div class="exp-co">GALA <span>· Orlando, FL</span></div>
+              <ul class="exp-bullets">
+                <li>Built scalable ETL pipelines (Airflow, AWS Glue) — improved daily report processing time by <b>40%</b></li>
+                <li>Established automated data validation pipelines delivering consistent BI KPIs for firm-wide forecasting</li>
+                <li>Optimized cloud infrastructure on AWS (Redshift, EC2, S3) — achieved <b>18% reduction</b> in monthly operational costs</li>
+                <li>Collaborated with engineering and business teams in Agile to align technical implementations with strategy</li>
+              </ul>
+              <div class="exp-tags">
+                <span class="exp-tag">Airflow</span><span class="exp-tag">AWS Glue</span><span class="exp-tag">Redshift</span><span class="exp-tag">EC2</span><span class="exp-tag">S3</span><span class="exp-tag">Agile</span>
+              </div>
+            </div>
+
+            <div class="exp-item">
+              <div class="exp-dot"></div>
+              <div class="exp-date">Jan 2020 — Jul 2022</div>
+              <div class="exp-role">Data Scientist (Part Time)</div>
+              <div class="exp-co">Grownited <span>· Ahmedabad, India</span></div>
+              <ul class="exp-bullets">
+                <li>Designed and optimized ETL pipelines integrating multi-source business data into centralized warehouses</li>
+                <li>Built predictive models to forecast customer engagement and retention — <b>improved campaign ROI by 15%</b></li>
+                <li>Developed interactive Tableau dashboards and SQL-based reporting solutions for senior management</li>
+                <li>Automated recurring Excel + Python workflows, <b>reducing manual reporting time by 30%</b></li>
+              </ul>
+              <div class="exp-tags">
+                <span class="exp-tag">ETL</span><span class="exp-tag">Tableau</span><span class="exp-tag">SQL</span><span class="exp-tag">Python</span><span class="exp-tag">Excel/VBA</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- ═══════════ CONTACT ═══════════ -->
+        <div class="page scrollable" id="page-contact">
+          <div class="cm">/* contact.css — let's build something together */</div>
+          <br>
+          <div class="sec-title">Contact</div>
+          <div class="sec-sub"><span class="cmu">.availability { status: "open-to-work"; response-time: "fast"; }</span></div>
+          <div class="avail-banner">
+            <div class="avail-dot"></div>
+            Open to full-time roles, collaborations, and interesting projects
+          </div>
+          <div class="contact-block">
+            <div class="contact-line">
+              <span class="contact-key">email</span>
+              <span class="contact-val"><a href="mailto:hisiddharth09@gmail.com">hisiddharth09@gmail.com</a></span>
+            </div>
+            <div class="contact-line">
+              <span class="contact-key">linkedin</span>
+              <span class="contact-val"><a href="https://www.linkedin.com/in/siddharth-shah-02bb34143/" target="_blank">linkedin.com/in/siddharth-shah-02bb34143</a></span>
+            </div>
+            <div class="contact-line">
+              <span class="contact-key">github</span>
+              <span class="contact-val"><a href="https://github.com/sidshah1921" target="_blank">github.com/sidshah1921</a></span>
+            </div>
+            <div class="contact-line">
+              <span class="contact-key">tableau</span>
+              <span class="contact-val"><a href="https://public.tableau.com/app/profile/siddharth.shah7887/vizzes" target="_blank">public.tableau.com/siddharth.shah7887</a></span>
+            </div>
+            <div class="contact-line">
+              <span class="contact-key">location</span>
+              <span class="contact-val">New York, NY</span>
+            </div>
+            <div class="contact-line">
+              <span class="contact-key">phone</span>
+              <span class="contact-val">516-315-4749</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- ═══════════ SAFELANDING ═══════════ -->
+        <div class="page scrollable" id="page-safelanding">
+          <div class="cm"># safelanding.py — currently building 🚧</div>
+          <br>
+          <div class="proj-card building" style="max-width:680px;">
+            <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px;">
+              <span style="font-size:32px;">🏠</span>
+              <div>
+                <div class="proj-title" style="font-size:18px;margin-bottom:2px;">SafeLanding</div>
+                <div class="building-badge"><div class="building-dot"></div> actively building</div>
+              </div>
+            </div>
+            <p class="proj-desc" style="font-size:13px;">Helping international students find roommates, apartments, and community in NYC through a full-stack web platform. Built for the unique challenges of newcomers navigating housing in a city as dense and expensive as New York — combining verified listings, roommate matching, and a trusted community layer.</p>
+            <br>
+            <div class="sg-title">Stack</div>
+            <div class="proj-tags" style="margin-bottom:16px;">
+              <span class="proj-tag">Python</span><span class="proj-tag">React</span><span class="proj-tag">PostgreSQL</span><span class="proj-tag">Full Stack</span>
+            </div>
+            <div class="sg-title">Status</div>
+            <div style="font-size:12.5px;color:var(--muted);">
+              <div style="margin-bottom:6px;">▸ <span style="color:var(--green);">✓</span> Core architecture designed</div>
+              <div style="margin-bottom:6px;">▸ <span style="color:var(--orange);">⟳</span> Backend API in progress</div>
+              <div style="margin-bottom:6px;">▸ <span style="color:var(--muted);">○</span> Frontend UI in design phase</div>
+              <div>▸ <span style="color:var(--muted);">○</span> Beta launch TBD</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ═══════════ ATELIER ═══════════ -->
+        <div class="page scrollable" id="page-atelier">
+          <div class="cm">// atelier.ts — currently building 🚧</div>
+          <br>
+          <div class="proj-card building" style="max-width:680px;">
+            <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px;">
+              <span style="font-size:32px;">💎</span>
+              <div>
+                <div class="proj-title" style="font-size:18px;margin-bottom:2px;">Atelier</div>
+                <div class="building-badge"><div class="building-dot"></div> actively building</div>
+              </div>
+            </div>
+            <p class="proj-desc" style="font-size:13px;">A modern, multi-tenant cloud ERP for diamond wholesalers — replacing legacy desktop software used by the $80B diamond trading industry. AI-powered natural language reporting lets users query their business in plain English. RapNet integration for real-time market pricing, and a complete inventory management system purpose-built for how the trade actually works.</p>
+            <br>
+            <div class="sg-title">Stack</div>
+            <div class="proj-tags" style="margin-bottom:16px;">
+              <span class="proj-tag">React</span><span class="proj-tag">FastAPI</span><span class="proj-tag">Supabase</span><span class="proj-tag">AI/NLP</span><span class="proj-tag">RapNet API</span><span class="proj-tag">Multi-tenant</span>
+            </div>
+            <div class="sg-title">Key Features</div>
+            <div style="font-size:12.5px;color:var(--muted);">
+              <div style="margin-bottom:6px;">▸ <span style="color:var(--green);">✓</span> Multi-tenant architecture</div>
+              <div style="margin-bottom:6px;">▸ <span style="color:var(--orange);">⟳</span> AI natural language reporting</div>
+              <div style="margin-bottom:6px;">▸ <span style="color:var(--orange);">⟳</span> RapNet pricing integration</div>
+              <div>▸ <span style="color:var(--muted);">○</span> Real-time inventory dashboard</div>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /code -->
+      <div class="minimap"></div>
+    </div><!-- /editor-content -->
+  </div><!-- /editor -->
+
+  <!-- TERMINAL -->
+  <div class="terminal-panel" id="terminal-panel">
+    <div class="terminal-tabs">
+      <div class="term-tab active">TERMINAL</div>
+      <div class="term-tab">PROBLEMS</div>
+      <div class="term-tab">OUTPUT</div>
+      <div class="term-close" onclick="toggleTerminal()">✕</div>
+    </div>
+    <div class="terminal-body" id="terminal-body">
+      <div class="t-line"><span class="t-out">Welcome to portfolio terminal — type </span><span class="t-cmd">help</span><span class="t-out"> for commands</span></div>
+      <div class="t-line">&nbsp;</div>
+      <div class="t-line"><span class="t-prompt">siddharth@portfolio</span><span class="t-out">:~$ </span><span class="t-cmd">git log</span></div>
+      <div class="t-line"><span class="t-hash">a9f2d1e</span> <span class="t-branch">(HEAD → main)</span> <span class="t-msg">feat: add Atelier ERP multi-tenant architecture</span></div>
+      <div class="t-line"><span class="t-hash">c7b3f80</span> <span class="t-msg">feat: RAG pipeline with FAISS vector search</span></div>
+      <div class="t-line"><span class="t-hash">e14a92c</span> <span class="t-msg">fix: optimise FastAPI response time for /recommendations</span></div>
+      <div class="t-line"><span class="t-hash">d3f8c4a</span> <span class="t-msg">chore: deploy Neuralearn to AWS EC2</span></div>
+      <div class="t-line"><span class="t-hash">b1e5d72</span> <span class="t-msg">feat: Airflow DAG for stock transaction pipeline @ Avitan</span></div>
+      <div class="t-line"><span class="t-hash">9a2c301</span> <span class="t-msg">feat: PostgreSQL connection pooling + Snowflake integration</span></div>
+      <div class="t-line"><span class="t-hash">77fb4e9</span> <span class="t-msg">data: NYC Taxi BigQuery analytics pipeline complete</span></div>
+      <div class="t-line"><span class="t-hash">3d6a182</span> <span class="t-msg">ml: XGBoost LTV model → 92.01% accuracy on ecomm dataset</span></div>
+      <div class="t-line">&nbsp;</div>
+      <div class="t-line"><span class="t-prompt">siddharth@portfolio</span><span class="t-out">:~$ </span><span class="t-cmd">python --version</span></div>
+      <div class="t-line"><span class="t-out">Python 3.11.7</span></div>
+      <div class="t-line">&nbsp;</div>
+      <div class="term-input-row">
+        <span class="t-prompt">siddharth@portfolio</span><span class="t-out">:~$&nbsp;</span>
+        <input class="term-input" id="term-input" type="text" autocomplete="off" spellcheck="false" placeholder="type a command…" onkeydown="handleTermCmd(event)"/>
+      </div>
+    </div>
+  </div>
+
+  </div><!-- /editor+terminal column -->
+
+  <!-- COPILOT PANEL -->
+  <div class="copilot-panel" id="copilot-panel">
+    <div class="copilot-header">
+      <div class="copilot-avatar">✦</div>
+      <div>
+        <div class="copilot-title">Siddharth's AI Assistant</div>
+        <div class="copilot-sub">Ask about projects, skills, experience</div>
+      </div>
+    </div>
+    <div class="copilot-workspace">
+      <span>WORKSPACE</span>
+      <span class="ws-badge">portfolio · sidshah1921</span>
+    </div>
+    <div class="copilot-msgs" id="copilot-msgs">
+      <div class="cop-msg cop-msg-bot">
+        Hi! I'm Siddharth's AI assistant 👋<br><br>
+        Ask me anything about his <b>projects</b>, <b>skills</b>, <b>work experience</b>, or how to get in touch.
+      </div>
+      <div class="cop-chips" id="cop-chips">
+        <div class="cop-chip" onclick="askCopilot('What projects has Siddharth built?')">What projects has he built?</div>
+        <div class="cop-chip" onclick="askCopilot('What is his tech stack?')">What is his tech stack?</div>
+        <div class="cop-chip" onclick="askCopilot('Tell me about his work experience')">Work experience?</div>
+        <div class="cop-chip" onclick="askCopilot('How can I contact Siddharth?')">How to contact him?</div>
+      </div>
+    </div>
+    <div class="copilot-input-area">
+      <div class="cop-input-wrap">
+        <input class="cop-input" id="cop-input" placeholder="Ask about Siddharth…" onkeydown="if(event.key==='Enter')sendCopilot()"/>
+        <button class="cop-send" id="cop-send-btn" onclick="sendCopilot()">▶</button>
+      </div>
+      <div class="cop-note">AI can make mistakes · Contact Siddharth directly for important info</div>
+    </div>
+  </div>
+</div><!-- /vsc-body -->
+
+<!-- STATUS BAR -->
+<div class="statusbar">
+  <div class="sb-item">⎇ main</div>
+  <div class="sb-item">🔔 0</div>
+  <div class="sb-item" id="sb-lang">TypeScript React</div>
+  <div class="sb-item" style="margin-left:auto;">UTF-8</div>
+  <div class="sb-item">Ln 1, Col 1</div>
+  <div class="sb-item" style="background:rgba(0,0,0,.2);padding:0 8px;border-radius:2px;">Catppuccin Dark</div>
+</div>
+
+<script>
+// ── RESUME CONTEXT FOR AI ──────────────────────────────────────────
+const RESUME_CONTEXT = `You are an AI assistant embedded in Siddharth Shah's developer portfolio website (styled like VS Code). Answer questions about Siddharth concisely and helpfully. Here is everything you know about him:
+
+NAME: Siddharth Shah
+LOCATION: New York, NY
+EMAIL: hisiddharth09@gmail.com
+PHONE: 516-315-4749
+LINKEDIN: linkedin.com/in/siddharth-shah-02bb34143
+GITHUB: github.com/sidshah1921
+TABLEAU: public.tableau.com/app/profile/siddharth.shah7887/vizzes
+
+SUMMARY: Data and Machine Learning Professional with 4+ years of experience in data engineering, business intelligence, and predictive analytics. Proficient in Python, SQL, Tableau, AWS, and cloud-based big data systems. Expertise in KPIs, market analysis, and advanced reporting frameworks.
+
+CURRENT JOB: Data and Operations Analyst at Avitan, New York (Jan 2025–Present). Designed predictive analytics models, led market/pricing strategy using RAPNET data (drove 22% margin increase), automated stock/transaction management with AWS S3, PostgreSQL, Airflow.
+
+PREVIOUS JOBS:
+- Specialist Data Analysis @ Maitri Solutions, NYC (May–Dec 2024): Tableau/Power BI dashboards, statistical models with Statsmodels, automated reporting (reduced manual effort 70%).
+- Data Scientist Intern @ GALA, Orlando (Jun 2023–Jan 2024): ETL pipelines with Airflow/AWS Glue (40% faster reports), optimized AWS infrastructure (18% cost reduction).
+- Data Scientist @ Grownited, India (Jan 2020–Jul 2022): ETL pipelines, predictive retention models (15% better campaign ROI), Tableau dashboards.
+
+EDUCATION:
+- NYU: MS Computer Engineering, GPA 3.8/4.0, 2022–2024
+- GTU: BE Information Technology, GPA 3.9/4.0, 2018–2022
+
+PUBLICATION: IEEE book chapter "Machine Learning in Medicine: Diagnosis of Skin Cancer using SVM Classifier" in "Computational Intelligence based Solutions for Vision System"
+
+PROJECTS:
+1. SafeLanding (building): Full-stack platform helping international students find roommates/apartments in NYC. Stack: Python, React, PostgreSQL.
+2. Atelier (building): Multi-tenant cloud ERP for diamond wholesalers replacing $80B industry legacy software. AI-powered NL reporting, RapNet integration, real-time inventory. Stack: React, FastAPI, Supabase.
+3. Neuralearn: AI tutoring platform using Claude 3.5. Real-time conversational support, personalized lesson plans. Flask + Tailwind + MySQL. 4.3/5 user satisfaction.
+4. RAG-NLP Property Recommendations: RAG system with FAISS vector search and Mistral-7B for property suggestions. 279K+ listing dataset. Stack: Python, HuggingFace, LangChain, FAISS, AWS.
+5. NYC Taxi Insights: End-to-end pipeline on NYC TLC data. Python/Pandas, GCP BigQuery, Tableau dashboards.
+6. eCommerce LTV Prediction: K-Means clustering + RFM analysis, XGBoost/Random Forest, 92.01% accuracy.
+
+TECH SKILLS:
+- Languages: Python, SQL, R, Java, Bash, C++
+- ML/AI: scikit-learn, PyTorch, TensorFlow, XGBoost, RandomForest, HuggingFace Transformers, LangChain, RAG, NLP, deep learning (RNN, CNN, Transformers), LLMs
+- Data Engineering: Airflow, AWS Glue, dbt, Snowflake, Redshift, BigQuery, Spark, Hadoop, MongoDB, DynamoDB
+- Cloud: AWS (S3, EC2, SageMaker, Redshift), GCP (BigQuery, Cloud Storage), Azure (Data Factory, Synapse), Docker, Kubernetes
+- Visualization: Tableau, Power BI, Looker, Matplotlib, Seaborn, Plotly
+- Other: Git, Jupyter, VSCode, Agile/Scrum, Jira, Statsmodels, Hypothesis Testing, A/B Testing, Causal Inference
+
+Keep answers concise (2-4 sentences max unless listing items). Be friendly and professional. If asked about contacting Siddharth, provide his email.`;
+
+// ── PAGE CONFIG ────────────────────────────────────────────────────
+const pages = {
+  home:        { file:'home.tsx',       lang:'TypeScript React', icon:'⚛️',  bc:['sidshah1921','src','home.tsx'] },
+  about:       { file:'README.md',      lang:'Markdown',         icon:'📄',  bc:['sidshah1921','README.md'] },
+  projects:    { file:'projects.js',    lang:'JavaScript',       icon:'📦',  bc:['sidshah1921','src','projects.js'] },
+  skills:      { file:'skills.json',    lang:'JSON',             icon:'🔧',  bc:['sidshah1921','data','skills.json'] },
+  experience:  { file:'experience.ts',  lang:'TypeScript',       icon:'💼',  bc:['sidshah1921','src','experience.ts'] },
+  contact:     { file:'contact.css',    lang:'CSS',              icon:'📬',  bc:['sidshah1921','src','contact.css'] },
+  safelanding: { file:'safelanding.py', lang:'Python',           icon:'🏠',  bc:['sidshah1921','building','safelanding.py'] },
+  atelier:     { file:'atelier.ts',     lang:'TypeScript',       icon:'💎',  bc:['sidshah1921','building','atelier.ts'] },
+};
+
+let openTabs = ['home'];
+let currentPage = 'home';
+
+// ── PAGE SWITCHING ─────────────────────────────────────────────────
+function switchPage(id) {
+  closeAllMenus();
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById('page-' + id).classList.add('active');
+
+  document.querySelectorAll('.file-item').forEach(f => f.classList.remove('active'));
+  const sidebarItem = document.querySelector(`.file-item[data-page="${id}"]`);
+  if (sidebarItem) sidebarItem.classList.add('active');
+
+  if (!openTabs.includes(id)) {
+    openTabs.push(id);
+    const tab = document.createElement('div');
+    tab.className = 'tab';
+    tab.id = 'tab-' + id;
+    tab.setAttribute('data-page', id);
+    tab.innerHTML = `<span>${pages[id].icon}</span> ${pages[id].file} <span class="tab-close" onclick="closeTab(event,'${id}')">✕</span>`;
+    tab.onclick = (e) => { if (!e.target.classList.contains('tab-close')) switchPage(id); };
+    document.getElementById('tabbar').appendChild(tab);
+    attachCursorHover(tab);
+  }
+
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  const activeTab = document.getElementById('tab-' + id);
+  if (activeTab) activeTab.classList.add('active');
+
+  currentPage = id;
+
+  const bc = pages[id].bc;
+  document.getElementById('breadcrumb').innerHTML = bc.map((b,i) =>
+    i < bc.length-1 ? `<span>${b}</span><span class="bc-sep">›</span>` : `<span class="bc-item">${b}</span>`
+  ).join('');
+
+  document.getElementById('sb-lang').textContent = pages[id].lang;
+  updateLineNumbers();
+
+  if (id === 'skills') {
+    setTimeout(() => document.querySelectorAll('.sk-fill').forEach(f => f.classList.add('go')), 150);
+  }
+  document.querySelector('.editor-content').scrollTop = 0;
+}
+
+function closeTab(e, id) {
+  e.stopPropagation();
+  openTabs = openTabs.filter(t => t !== id);
+  document.getElementById('tab-' + id)?.remove();
+  if (currentPage === id) {
+    const fallback = openTabs[openTabs.length - 1] || 'home';
+    if (!openTabs.includes('home')) { openTabs.push('home'); }
+    switchPage(openTabs[openTabs.length-1]);
+  }
+}
+
+// ── MENUS ──────────────────────────────────────────────────────────
+function toggleMenu(id) {
+  const isOpen = document.getElementById(id).classList.contains('open');
+  closeAllMenus();
+  if (!isOpen) document.getElementById(id).classList.add('open');
+}
+function closeAllMenus() {
+  document.querySelectorAll('.dropdown').forEach(d => d.classList.remove('open'));
+}
+document.addEventListener('click', (e) => {
+  if (!e.target.closest('.menu-wrap')) closeAllMenus();
+});
+
+// ── TERMINAL ──────────────────────────────────────────────────────
+let terminalVisible = true;
+function toggleTerminal() {
+  closeAllMenus();
+  const panel = document.getElementById('terminal-panel');
+  terminalVisible = !terminalVisible;
+  panel.style.display = terminalVisible ? 'flex' : 'none';
+}
+
+const termCmds = {
+  help: () => [
+    'Available commands:',
+    '  git log        — show recent commits',
+    '  git status     — show working tree status',
+    '  ls             — list files',
+    '  whoami         — about Siddharth',
+    '  skills         — list tech skills',
+    '  contact        — get contact info',
+    '  clear          — clear terminal',
+  ],
+  'git log': () => [
+    '\x1b[33ma9f2d1e\x1b[0m (HEAD → main) feat: add Atelier ERP multi-tenant architecture',
+    'c7b3f80 feat: RAG pipeline with FAISS vector search',
+    'e14a92c fix: optimise FastAPI response time for /recommendations',
+    'd3f8c4a chore: deploy Neuralearn to AWS EC2',
+    'b1e5d72 feat: Airflow DAG for stock transaction pipeline @ Avitan',
+    '9a2c301 feat: PostgreSQL connection pooling + Snowflake integration',
+    '77fb4e9 data: NYC Taxi BigQuery analytics pipeline complete',
+    '3d6a182 ml: XGBoost LTV model → 92.01% accuracy on ecomm dataset',
+  ],
+  'git status': () => [
+    'On branch main',
+    'Your branch is up to date with \'origin/main\'.',
+    '',
+    'Changes in progress:',
+    '  modified:   safelanding/backend/api/routes.py',
+    '  modified:   atelier/src/components/InventoryDashboard.tsx',
+    '  new file:   atelier/src/services/rapnet.ts',
+  ],
+  ls: () => ['home.tsx  README.md  projects.js  skills.json  experience.ts  contact.css  safelanding.py  atelier.ts'],
+  whoami: () => ['Siddharth Shah — Data & ML Engineer, NYC', 'MS Computer Engineering, NYU | Currently @ Avitan'],
+  skills: () => ['Python · SQL · PyTorch · TensorFlow · scikit-learn · XGBoost', 'Airflow · dbt · Snowflake · BigQuery · Spark', 'AWS · GCP · Docker · Kubernetes', 'Tableau · Power BI · LangChain · HuggingFace · RAG'],
+  contact: () => ['Email:    hisiddharth09@gmail.com', 'GitHub:   github.com/sidshah1921', 'LinkedIn: linkedin.com/in/siddharth-shah-02bb34143', 'Tableau:  public.tableau.com/siddharth.shah7887'],
+  'python --version': () => ['Python 3.11.7'],
+  'node --version': () => ['v20.11.0'],
+  pwd: () => ['/home/sidshah1921/portfolio'],
+  date: () => [new Date().toString()],
+};
+
+function handleTermCmd(e) {
+  if (e.key !== 'Enter') return;
+  const input = document.getElementById('term-input');
+  const cmd = input.value.trim().toLowerCase();
+  input.value = '';
+  const body = document.getElementById('terminal-body');
+  const inputRow = body.querySelector('.term-input-row');
+
+  // Echo the command
+  const echoLine = document.createElement('div');
+  echoLine.className = 't-line';
+  echoLine.innerHTML = `<span class="t-prompt">siddharth@portfolio</span><span class="t-out">:~$ </span><span class="t-cmd">${cmd}</span>`;
+  body.insertBefore(echoLine, inputRow);
+
+  if (cmd === 'clear') {
+    // remove all lines except input row
+    [...body.children].forEach(c => { if (c !== inputRow) c.remove(); });
+  } else {
+    const handler = termCmds[cmd];
+    const lines = handler ? handler() : [`bash: ${cmd}: command not found`];
+    lines.forEach(txt => {
+      const line = document.createElement('div');
+      line.className = 't-line';
+      line.innerHTML = `<span class="t-out">${txt}</span>`;
+      body.insertBefore(line, inputRow);
+    });
+    const blank = document.createElement('div');
+    blank.className = 't-line';
+    blank.innerHTML = '&nbsp;';
+    body.insertBefore(blank, inputRow);
+  }
+  body.scrollTop = body.scrollHeight;
+}
+
+// ── COPILOT PANEL ─────────────────────────────────────────────────
+let copilotVisible = true;
+let copilotHistory = [];
+
+function toggleCopilot() {
+  closeAllMenus();
+  copilotVisible = !copilotVisible;
+  document.getElementById('copilot-panel').style.display = copilotVisible ? 'flex' : 'none';
+}
+
+async function askCopilot(question) {
+  document.getElementById('cop-input').value = question;
+  await sendCopilot();
+}
+
+async function sendCopilot() {
+  const input = document.getElementById('cop-input');
+  const question = input.value.trim();
+  if (!question) return;
+  input.value = '';
+
+  // Hide chips after first message
+  const chips = document.getElementById('cop-chips');
+  if (chips) chips.remove();
+
+  const msgs = document.getElementById('copilot-msgs');
+  const btn = document.getElementById('cop-send-btn');
+
+  // User bubble
+  const userMsg = document.createElement('div');
+  userMsg.className = 'cop-msg cop-msg-user';
+  userMsg.textContent = question;
+  msgs.appendChild(userMsg);
+
+  // Typing indicator
+  const typing = document.createElement('div');
+  typing.className = 'cop-msg cop-msg-bot';
+  typing.innerHTML = '<div class="cop-typing"><span></span><span></span><span></span></div>';
+  msgs.appendChild(typing);
+  msgs.scrollTop = msgs.scrollHeight;
+  btn.disabled = true;
+
+  copilotHistory.push({ role: 'user', content: question });
+
+  try {
+    const response = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-20250514',
+        max_tokens: 400,
+        system: RESUME_CONTEXT,
+        messages: copilotHistory,
+      })
+    });
+    const data = await response.json();
+    const answer = data.content?.[0]?.text || 'Sorry, I had trouble answering that. Please try again.';
+    copilotHistory.push({ role: 'assistant', content: answer });
+
+    typing.innerHTML = answer.replace(/\*\*(.*?)\*\*/g, '<b>$1</b>').replace(/\n/g, '<br>');
+  } catch (err) {
+    typing.innerHTML = 'Network error. <b>Email Siddharth directly:</b> hisiddharth09@gmail.com';
+  }
+
+  btn.disabled = false;
+  msgs.scrollTop = msgs.scrollHeight;
+}
+
+// ── LINE NUMBERS ───────────────────────────────────────────────────
+function updateLineNumbers() {
+  const lnum = document.getElementById('lnum');
+  lnum.innerHTML = Array.from({length:80},(_,i)=>`<div>${i+1}</div>`).join('');
+}
+
+// ── SIDEBAR CLICK ──────────────────────────────────────────────────
+document.querySelectorAll('.file-item').forEach(item => {
+  const pageId = item.getAttribute('data-page');
+  if (pageId) item.addEventListener('click', () => switchPage(pageId));
+});
+
+// ── KEYBOARD SHORTCUT ──────────────────────────────────────────────
+document.addEventListener('keydown', (e) => {
+  if (e.ctrlKey && e.key === '`') { e.preventDefault(); toggleTerminal(); }
+  if ((e.ctrlKey && e.key === 'p') || (e.ctrlKey && e.key === 'P')) { e.preventDefault(); openPalette(); }
+  if (e.key === 'Escape') closePalette();
+});
+
+// ── COMMAND PALETTE ───────────────────────────────────────────────
+const PALETTE_ITEMS = [
+  { type:'command', icon:'✦', name:"Open Siddharth's Copilot", kbd:'Ctrl+Shift+C', action: () => { if(!copilotVisible) toggleCopilot(); document.getElementById('cop-input').focus(); } },
+  { type:'command', icon:'⌨️', name:'Toggle Terminal', kbd:'Ctrl+`', action: toggleTerminal },
+  { type:'command', icon:'👁️', name:'Toggle Copilot Panel', action: toggleCopilot },
+  { type:'file', icon:'⚛️', name:'home.tsx', path:'src/', page:'home' },
+  { type:'file', icon:'📄', name:'README.md', path:'/', page:'about' },
+  { type:'file', icon:'📦', name:'projects.js', path:'src/', page:'projects' },
+  { type:'file', icon:'🔧', name:'skills.json', path:'data/', page:'skills' },
+  { type:'file', icon:'💼', name:'experience.ts', path:'src/', page:'experience' },
+  { type:'file', icon:'📬', name:'contact.css', path:'src/', page:'contact' },
+  { type:'file', icon:'🏠', name:'safelanding.py', path:'building/', page:'safelanding' },
+  { type:'file', icon:'💎', name:'atelier.ts', path:'building/', page:'atelier' },
+];
+
+let paletteSelectedIdx = 0;
+let filteredItems = [];
+
+function openPalette() {
+  closeAllMenus();
+  document.getElementById('palette').classList.add('open');
+  const input = document.getElementById('palette-input');
+  input.value = '';
+  input.focus();
+  paletteSelectedIdx = 0;
+  renderPalette(PALETTE_ITEMS);
+}
+
+function closePalette(e) {
+  document.getElementById('palette').classList.remove('open');
+}
+
+function renderPalette(items) {
+  filteredItems = items;
+  const list = document.getElementById('palette-list');
+  if (!items.length) { list.innerHTML = '<div style="padding:16px 14px;color:var(--muted);font-size:12px;">No results</div>'; return; }
+
+  const commands = items.filter(i => i.type === 'command');
+  const files = items.filter(i => i.type === 'file');
+  let html = '';
+
+  if (commands.length) {
+    html += '<div class="palette-section">Commands</div>';
+    commands.forEach((item, idx) => {
+      const globalIdx = items.indexOf(item);
+      html += `<div class="palette-item${globalIdx===paletteSelectedIdx?' selected':''}" onclick="runPaletteItem(${globalIdx})">
+        <span class="pi-icon">${item.icon}</span>
+        <span class="pi-name">${item.name}</span>
+        ${item.kbd ? `<span class="pi-kbd">${item.kbd}</span>` : ''}
+      </div>`;
+    });
+  }
+  if (files.length) {
+    html += '<div class="palette-section">Files</div>';
+    files.forEach((item) => {
+      const globalIdx = items.indexOf(item);
+      html += `<div class="palette-item${globalIdx===paletteSelectedIdx?' selected':''}" onclick="runPaletteItem(${globalIdx})">
+        <span class="pi-icon">${item.icon}</span>
+        <span class="pi-name">${item.name}</span>
+        <span class="pi-path">${item.path}</span>
+      </div>`;
+    });
+  }
+  list.innerHTML = html;
+}
+
+function filterPalette() {
+  const q = document.getElementById('palette-input').value.toLowerCase().trim();
+  paletteSelectedIdx = 0;
+  if (!q) { renderPalette(PALETTE_ITEMS); return; }
+  // special keyword
+  if ('copilot'.startsWith(q)) {
+    renderPalette(PALETTE_ITEMS.filter(i => i.name.toLowerCase().includes(q) || i.name.toLowerCase().includes('copilot')));
+    return;
+  }
+  renderPalette(PALETTE_ITEMS.filter(i => i.name.toLowerCase().includes(q) || (i.path||'').toLowerCase().includes(q)));
+}
+
+function paletteKey(e) {
+  if (e.key === 'Escape') { closePalette(); return; }
+  if (e.key === 'ArrowDown') { e.preventDefault(); paletteSelectedIdx = Math.min(paletteSelectedIdx+1, filteredItems.length-1); renderPalette(filteredItems); scrollPaletteSelected(); }
+  if (e.key === 'ArrowUp')   { e.preventDefault(); paletteSelectedIdx = Math.max(paletteSelectedIdx-1, 0); renderPalette(filteredItems); scrollPaletteSelected(); }
+  if (e.key === 'Enter') { runPaletteItem(paletteSelectedIdx); }
+}
+
+function scrollPaletteSelected() {
+  const selected = document.querySelector('.palette-item.selected');
+  if (selected) selected.scrollIntoView({ block: 'nearest' });
+}
+
+function runPaletteItem(idx) {
+  const item = filteredItems[idx];
+  if (!item) return;
+  closePalette();
+  if (item.action) item.action();
+  else if (item.page) switchPage(item.page);
+}
+
+// ── SQUARE CURSOR ─────────────────────────────────────────────────
+function attachCursorHover(root) {
+  root.querySelectorAll('a,button,[onclick],.file-item,.tab,.vbtn,.soc-btn,.proj-link,.cop-chip,.palette-item,.dd-item,.act-icon,.term-tab,.menu-item,.proj-card,.stat-cell').forEach(el => {
+    el.addEventListener('mouseenter', () => { sqCursor && sqCursor.classList.add('hovering'); sqDot && sqDot.classList.add('hovering'); });
+    el.addEventListener('mouseleave', () => { sqCursor && sqCursor.classList.remove('hovering'); sqDot && sqDot.classList.remove('hovering'); });
+  });
+}
+
+let sqCursor = null, sqDot = null;
+let mouseX = -100, mouseY = -100;   // real mouse position (dot follows this instantly)
+let sqX = -100, sqY = -100;         // square's lagged position
+
+window.addEventListener('DOMContentLoaded', () => {
+  sqCursor = document.getElementById('sq-cursor');
+  sqDot    = document.getElementById('sq-dot');
+  if (!sqCursor || !sqDot) return;
+
+  document.addEventListener('mousemove', e => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+    // Dot snaps instantly
+    sqDot.style.left = mouseX + 'px';
+    sqDot.style.top  = mouseY + 'px';
+  });
+
+  // Square smoothly follows with lerp
+  function lerpCursor() {
+    const ease = 0.18;
+    sqX += (mouseX - sqX) * ease;
+    sqY += (mouseY - sqY) * ease;
+    sqCursor.style.left = sqX + 'px';
+    sqCursor.style.top  = sqY + 'px';
+    requestAnimationFrame(lerpCursor);
+  }
+  lerpCursor();
+
+  document.addEventListener('mousedown', () => { sqCursor.classList.add('clicking'); sqDot.classList.add('clicking'); });
+  document.addEventListener('mouseup',   () => { sqCursor.classList.remove('clicking'); sqDot.classList.remove('clicking'); });
+  attachCursorHover(document);
+});
+
+updateLineNumbers();
+</script>
+<!-- COMMAND PALETTE -->
+<div class="palette-overlay" id="palette" onclick="closePalette(event)">
+  <div class="palette-box" onclick="event.stopPropagation()">
+    <div class="palette-input-row">
+      <span class="palette-prefix">›</span>
+      <input class="palette-input" id="palette-input" placeholder="Go to file or run command…" oninput="filterPalette()" onkeydown="paletteKey(event)" autocomplete="off" spellcheck="false"/>
+      <span class="palette-esc">Esc</span>
+    </div>
+    <div class="palette-list" id="palette-list"></div>
+    <div class="palette-footer">
+      <span><span class="pf-key">↑↓</span> navigate</span>
+      <span><span class="pf-key">↵</span> open</span>
+      <span><span class="pf-key">Esc</span> close</span>
+      <span style="margin-left:auto;">Tip: type <span class="pf-key">copilot</span> to open AI chat</span>
+    </div>
+  </div>
+</div>
+
+<!-- SQUARE CURSOR -->
+<div id="sq-cursor"></div>
+<div id="sq-dot"></div>
+
+</body>
+</html>
