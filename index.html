@@ -373,6 +373,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:13
         <div class="dd-item" onclick="switchPage('skills','skills.json','json')">skills.json</div>
         <div class="dd-item" onclick="switchPage('experience','experience.ts','ts')">experience.ts</div>
         <div class="dd-item dd-sep"></div>
+        <div class="dd-item" onclick="switchPage('atelier')">atelier.ts</div>
         <div class="dd-item" onclick="window.open('https://github.com/sidshah1921','_blank')"><span>Download Resume</span></div>
         <div class="dd-item"><span>Close Tab</span><span class="dd-kbd">Ctrl+W</span></div>
       </div>
@@ -408,8 +409,10 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:13
         <div class="dd-item" onclick="switchPage('skills','skills.json','json')">skills.json</div>
         <div class="dd-item" onclick="switchPage('experience','experience.ts','ts')">experience.ts</div>
         <div class="dd-item" onclick="switchPage('contact','contact.css','css')">contact.css</div>
-        <div class="dd-item" onclick="switchPage('safelanding','safelanding.py','py')">safelanding.py</div>
         <div class="dd-item" onclick="switchPage('atelier','atelier.ts','ts')">atelier.ts</div>
+        <div class="dd-item" onclick="switchPage('construction','construction-ops.tsx','tsx')">construction-ops.tsx</div>
+        <div class="dd-item" onclick="switchPage('lumiere','lumiere.ts','ts')">lumiere.ts</div>
+        <div class="dd-item" onclick="switchPage('safelanding','safelanding.py','py')">safelanding.py</div>
       </div>
     </div>
     <div class="menu-wrap">
@@ -468,12 +471,20 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:13
     </div>
     <div style="height:14px;"></div>
     <div class="sb-section">BUILDING</div>
-    <div class="file-item" data-page="safelanding" style="color:var(--orange)">
-      <span class="fi-icon">🏠</span> safelanding.py
-      <div class="fi-dot fi-building"></div>
-    </div>
     <div class="file-item" data-page="atelier" style="color:var(--orange)">
       <span class="fi-icon">💎</span> atelier.ts
+      <div class="fi-dot fi-building"></div>
+    </div>
+    <div class="file-item" data-page="construction" style="color:var(--orange)">
+      <span class="fi-icon">🏗️</span> construction-ops.tsx
+      <div class="fi-dot fi-building"></div>
+    </div>
+    <div class="file-item" data-page="lumiere" style="color:var(--orange)">
+      <span class="fi-icon">✨</span> lumiere.ts
+      <div class="fi-dot fi-building"></div>
+    </div>
+    <div class="file-item" data-page="safelanding" style="color:var(--orange)">
+      <span class="fi-icon">🏠</span> safelanding.py
       <div class="fi-dot fi-building"></div>
     </div>
   </div>
@@ -510,18 +521,17 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:13
             <span class="last">Shah</span>
           </div>
           <div class="badges">
-            <div class="badge"><div class="bd bd-blue"></div> Data &amp; ML Engineer</div>
-            <div class="badge"><div class="bd bd-green"></div> Data Scientist</div>
-            <div class="badge"><div class="bd bd-purple"></div> BI &amp; Analytics</div>
-            <div class="badge"><div class="bd bd-teal"></div> MLOps</div>
-            <div class="badge"><div class="bd bd-pink"></div> @ Avitan · NYC</div>
+            <div class="badge"><div class="bd bd-pink"></div> Founding Engineer @ Atelier</div>
+            <div class="badge"><div class="bd bd-blue"></div> Data &amp; Research Analyst @ Avitan</div>
+            <div class="badge"><div class="bd bd-purple"></div> AI Agents &amp; Tooling</div>
+            <div class="badge"><div class="bd bd-teal"></div> Full-Stack + ML</div>
           </div>
           <div class="hero-bio">
             <span class="cm">/**</span><br>
-            &nbsp;* I live at the crossroads of <span class="hl-blue">data engineering</span>, <span class="hl-green">machine learning</span>, and <span class="hl-teal">business intelligence</span>.<br>
-            &nbsp;* I build systems that are genuinely intelligent and scalable — from ETL pipelines<br>
-            &nbsp;* and predictive models to LLM-powered applications and real-time dashboards.<br>
-            &nbsp;* Currently building two products: <span class="hl-orange">SafeLanding</span> &amp; <span class="hl-orange">Atelier</span>.<br>
+            &nbsp;* Founding Engineer building <span class="hl-orange">Atelier</span> — a multi-tenant cloud ERP/OMS for diamond wholesalers.<br>
+            &nbsp;* I live at the crossroads of <span class="hl-blue">full-stack engineering</span>, <span class="hl-green">agentic AI</span>, and <span class="hl-teal">data science</span>.<br>
+            &nbsp;* Also shipping <span class="hl-orange">Construction Ops</span>, <span class="hl-orange">Lumière</span> &amp; <span class="hl-orange">SafeLanding</span> —<br>
+            &nbsp;* and analyzing trading &amp; pricing data as a Data &amp; Research Analyst at Avitan.<br>
             &nbsp;<span class="cm">*/</span>
           </div>
           <div class="btns">
@@ -530,8 +540,8 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:13
             <a href="#" onclick="switchPage('contact');return false;" class="vbtn">✉ Contact</a>
           </div>
           <div class="stats-row">
-            <div class="stat-cell"><div class="stat-val">4+</div><div class="stat-lbl">Years Exp.</div></div>
-            <div class="stat-cell"><div class="stat-val">10+</div><div class="stat-lbl">Projects</div></div>
+            <div class="stat-cell"><div class="stat-val">Founder</div><div class="stat-lbl">@ Atelier</div></div>
+            <div class="stat-cell"><div class="stat-val">4</div><div class="stat-lbl">Active Builds</div></div>
             <div class="stat-cell"><div class="stat-val">IEEE</div><div class="stat-lbl">Published</div></div>
             <div class="stat-cell"><div class="stat-val">∞</div><div class="stat-lbl">Curiosity</div></div>
           </div>
@@ -539,8 +549,8 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:13
             <a href="https://github.com/sidshah1921" target="_blank" class="soc-btn">🐙 GitHub</a>
             <a href="https://www.linkedin.com/in/siddharth-shah-02bb34143/" target="_blank" class="soc-btn">🔗 LinkedIn</a>
             <a href="https://public.tableau.com/app/profile/siddharth.shah7887/vizzes" target="_blank" class="soc-btn">📊 Tableau</a>
-            <a href="mailto:hisiddharth09@gmail.com" class="soc-btn">✉ Email</a>
-            <a href="https://www.nyu.edu" target="_blank" class="soc-btn">🎓 NYU MS</a>
+            <a href="mailto:ss16130@nyu.edu" class="soc-btn">✉ Email</a>
+            <a href="https://getatelier.io" target="_blank" class="soc-btn">💎 getatelier.io</a>
           </div>
         </div>
 
@@ -551,25 +561,28 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:13
           <div class="readme-section">
             <div class="readme-h1">👋 Hi, I'm Siddharth Shah</div>
             <div class="readme-p">
-              Data & ML professional with <b>4+ years of experience</b> across software, finance, and operations. 
-              I specialize in building end-to-end data systems — from <b>ETL pipelines and data warehouses</b> to 
-              <b>ML models and NLP applications</b>. Currently based in <b>New York City</b>, working at <b>Avitan</b> 
-              as a Data and Operations Analyst.
+              Founding Engineer building <b>Atelier</b>, a multi-tenant cloud ERP/OMS SaaS platform for diamond
+              wholesalers — architecting the full stack from React/TypeScript/Vite to Python/FastAPI/PostgreSQL.
+              Alongside that, I work as a <b>Data and Research Analyst at Avitan</b>, and ship a handful of other
+              products on the side. Based in <b>New York City</b>.
             </div>
             <div class="readme-p">
-              I hold an <b>MS in Computer Engineering from NYU</b> (GPA 3.8) and a BE in Information Technology 
-              from Gujarat Technological University (GPA 3.9). Proficient in Python, SQL, Tableau, and AWS — 
-              with deep expertise in predictive analytics, market analysis, and advanced reporting.
+              I hold an <b>MS in Computer Engineering from NYU</b> and a BE in Information Technology
+              from Gujarat Technological University. Strong background in full-stack development, agentic AI
+              tooling, data engineering, and predictive analytics — with hands-on experience shipping production
+              SaaS infrastructure end to end.
             </div>
           </div>
           <div class="readme-section">
             <div class="readme-h2">🎯 What I Do</div>
             <table class="readme-table">
+              <tr><td>🏗️ Full-Stack</td><td>React, TypeScript, Vite, TailwindCSS, Next.js, FastAPI, PostgreSQL, Supabase, multi-tenant SaaS architecture</td></tr>
+              <tr><td>🤖 AI Agents</td><td>Claude Code, MCP, agentic workflows, tool calling, prompt &amp; context engineering</td></tr>
               <tr><td>🧠 ML &amp; AI</td><td>LLMs, RAG architectures, NLP pipelines, deep learning (CNN, RNN, Transformers), recommender systems</td></tr>
-              <tr><td>🗄️ Data Eng.</td><td>ETL/ELT with Airflow, AWS Glue, dbt; warehousing on Snowflake, Redshift, BigQuery</td></tr>
-              <tr><td>📊 Analytics</td><td>Tableau, Power BI, Looker dashboards; statistical modeling, A/B testing, causal inference</td></tr>
-              <tr><td>☁️ Cloud</td><td>AWS (S3, EC2, SageMaker, Redshift), GCP (BigQuery), Azure (Data Factory, Synapse)</td></tr>
-              <tr><td>🚀 Building</td><td>SafeLanding (full-stack, Python/React/PostgreSQL) + Atelier (cloud ERP, React/FastAPI/Supabase)</td></tr>
+              <tr><td>🗄️ Data Eng.</td><td>ETL/ELT with Airflow, AWS Glue, dbt; warehousing on Snowflake, BigQuery; NoSQL</td></tr>
+              <tr><td>📊 Analytics</td><td>Tableau, Power BI, Looker; statistical modeling, hypothesis testing, A/B testing</td></tr>
+              <tr><td>☁️ Cloud</td><td>AWS (S3, EC2, SageMaker, Redshift), GCP (BigQuery, Cloud Storage), Azure (Data Factory, Synapse), Docker, Kubernetes</td></tr>
+              <tr><td>🚀 Building</td><td>Atelier (cloud ERP) · Construction Ops Platform · Lumière (AI product renders) · SafeLanding</td></tr>
             </table>
           </div>
           <div class="readme-section">
@@ -596,6 +609,63 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:13
           <div class="sec-sub"><span class="cmu">const projects = [ ...shipped, ...building ]</span></div>
           <div class="proj-grid">
 
+            <!-- Atelier -->
+            <div class="proj-card building">
+              <div class="proj-emoji">💎</div>
+              <div class="proj-cats">
+                <span class="proj-cat" style="color:var(--orange)">Cloud ERP</span>
+                <span class="cat-sep">·</span>
+                <span class="proj-cat" style="color:var(--purple)">AI · B2B · Founded</span>
+                <div class="building-badge"><div class="building-dot"></div> building</div>
+              </div>
+              <div class="proj-title">Atelier</div>
+              <p class="proj-desc">Multi-tenant cloud ERP/OMS SaaS for diamond wholesalers — founded and built solo. AI-powered memo/invoice scanning with GIA/IGI cert data, full CRM with Stripe billing, and production infra across Railway, Vercel, and Supabase.</p>
+              <div class="proj-tags">
+                <span class="proj-tag">React</span><span class="proj-tag">TypeScript</span><span class="proj-tag">Vite</span><span class="proj-tag">FastAPI</span><span class="proj-tag">PostgreSQL</span><span class="proj-tag">Supabase</span><span class="proj-tag">Stripe</span>
+              </div>
+              <div class="proj-links">
+                <a href="https://getatelier.io" target="_blank" class="proj-link">💎 getatelier.io ↗</a>
+              </div>
+            </div>
+
+            <!-- Construction Ops Platform -->
+            <div class="proj-card building">
+              <div class="proj-emoji">🏗️</div>
+              <div class="proj-cats">
+                <span class="proj-cat" style="color:var(--blue)">Ops Platform</span>
+                <span class="cat-sep">·</span>
+                <span class="proj-cat" style="color:var(--green)">B2B</span>
+                <div class="building-badge"><div class="building-dot"></div> building</div>
+              </div>
+              <div class="proj-title">Construction Ops Platform</div>
+              <p class="proj-desc">Bespoke operations platform for a subcontractor construction company, covering job-site tracking, real-time cost and profit margin visibility, and PM progress reporting. Includes a bids module for client-ready proposals.</p>
+              <div class="proj-tags">
+                <span class="proj-tag">React</span><span class="proj-tag">TypeScript</span><span class="proj-tag">Vite</span><span class="proj-tag">TailwindCSS</span><span class="proj-tag">FastAPI</span><span class="proj-tag">PostgreSQL</span><span class="proj-tag">Supabase</span>
+              </div>
+              <div class="proj-links">
+                <span class="proj-link">🚧 In Progress</span>
+              </div>
+            </div>
+
+            <!-- Lumière -->
+            <div class="proj-card building">
+              <div class="proj-emoji">✨</div>
+              <div class="proj-cats">
+                <span class="proj-cat" style="color:var(--pink)">AI SaaS</span>
+                <span class="cat-sep">·</span>
+                <span class="proj-cat" style="color:var(--purple)">Jewelry Tech</span>
+                <div class="building-badge"><div class="building-dot"></div> building</div>
+              </div>
+              <div class="proj-title">Lumière</div>
+              <p class="proj-desc">AI-powered SaaS that generates studio-quality product renders for jewelry brands from raw images, with multi-tenant auth and credit-based billing.</p>
+              <div class="proj-tags">
+                <span class="proj-tag">Next.js</span><span class="proj-tag">Supabase</span><span class="proj-tag">Prisma</span><span class="proj-tag">Replicate</span><span class="proj-tag">Stripe</span>
+              </div>
+              <div class="proj-links">
+                <span class="proj-link">🚧 In Progress</span>
+              </div>
+            </div>
+
             <!-- SafeLanding -->
             <div class="proj-card building">
               <div class="proj-emoji">🏠</div>
@@ -606,28 +676,9 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:13
                 <div class="building-badge"><div class="building-dot"></div> building</div>
               </div>
               <div class="proj-title">SafeLanding</div>
-              <p class="proj-desc">Helping international students find roommates, apartments, and community in NYC. A full-stack web platform connecting students with verified housing and a trusted social network for newcomers navigating the city.</p>
+              <p class="proj-desc">Community platform for international students to find roommates and apartments through profile-based matching and forums.</p>
               <div class="proj-tags">
-                <span class="proj-tag">Python</span><span class="proj-tag">React</span><span class="proj-tag">PostgreSQL</span><span class="proj-tag">Full Stack</span>
-              </div>
-              <div class="proj-links">
-                <span class="proj-link">🚧 In Progress</span>
-              </div>
-            </div>
-
-            <!-- Atelier -->
-            <div class="proj-card building">
-              <div class="proj-emoji">💎</div>
-              <div class="proj-cats">
-                <span class="proj-cat" style="color:var(--orange)">Cloud ERP</span>
-                <span class="cat-sep">·</span>
-                <span class="proj-cat" style="color:var(--purple)">AI · B2B</span>
-                <div class="building-badge"><div class="building-dot"></div> building</div>
-              </div>
-              <div class="proj-title">Atelier</div>
-              <p class="proj-desc">Modern multi-tenant cloud ERP for diamond wholesalers, replacing $80B industry legacy software. AI-powered natural language reporting, RapNet integration, and real-time inventory management for the global diamond trade.</p>
-              <div class="proj-tags">
-                <span class="proj-tag">React</span><span class="proj-tag">FastAPI</span><span class="proj-tag">Supabase</span><span class="proj-tag">AI/NLP</span><span class="proj-tag">RapNet</span>
+                <span class="proj-tag">Python</span><span class="proj-tag">React</span><span class="proj-tag">Supabase</span>
               </div>
               <div class="proj-links">
                 <span class="proj-link">🚧 In Progress</span>
@@ -730,36 +781,53 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:13
               <div class="sg-title">Languages</div>
               <div class="sk-row"><div class="sk-hdr"><span class="sk-name">Python</span><span class="sk-pct" style="color:var(--blue)">95%</span></div><div class="sk-bg"><div class="sk-fill" style="width:95%;background:var(--blue);"></div></div></div>
               <div class="sk-row"><div class="sk-hdr"><span class="sk-name">SQL</span><span class="sk-pct" style="color:var(--green)">90%</span></div><div class="sk-bg"><div class="sk-fill" style="width:90%;background:var(--green);"></div></div></div>
+              <div class="sk-row"><div class="sk-hdr"><span class="sk-name">TypeScript</span><span class="sk-pct" style="color:var(--sky)">88%</span></div><div class="sk-bg"><div class="sk-fill" style="width:88%;background:var(--sky);"></div></div></div>
               <div class="sk-row"><div class="sk-hdr"><span class="sk-name">R</span><span class="sk-pct" style="color:var(--yellow)">72%</span></div><div class="sk-bg"><div class="sk-fill" style="width:72%;background:var(--yellow);"></div></div></div>
-              <div class="sk-row"><div class="sk-hdr"><span class="sk-name">Java</span><span class="sk-pct" style="color:var(--orange)">68%</span></div><div class="sk-bg"><div class="sk-fill" style="width:68%;background:var(--orange);"></div></div></div>
-              <div class="sk-row"><div class="sk-hdr"><span class="sk-name">Bash</span><span class="sk-pct" style="color:var(--teal)">70%</span></div><div class="sk-bg"><div class="sk-fill" style="width:70%;background:var(--teal);"></div></div></div>
+              <div class="sk-row"><div class="sk-hdr"><span class="sk-name">Java / C++</span><span class="sk-pct" style="color:var(--orange)">68%</span></div><div class="sk-bg"><div class="sk-fill" style="width:68%;background:var(--orange);"></div></div></div>
+              <div class="sk-row"><div class="sk-hdr"><span class="sk-name">CLI</span><span class="sk-pct" style="color:var(--teal)">80%</span></div><div class="sk-bg"><div class="sk-fill" style="width:80%;background:var(--teal);"></div></div></div>
             </div>
 
             <div>
-              <div class="sg-title">AI · ML · Data Science</div>
-              <div class="sk-row"><div class="sk-hdr"><span class="sk-name">scikit-learn</span><span class="sk-pct" style="color:var(--orange)">92%</span></div><div class="sk-bg"><div class="sk-fill" style="width:92%;background:var(--orange);"></div></div></div>
-              <div class="sk-row"><div class="sk-hdr"><span class="sk-name">PyTorch / TensorFlow</span><span class="sk-pct" style="color:var(--pink)">82%</span></div><div class="sk-bg"><div class="sk-fill" style="width:82%;background:var(--pink);"></div></div></div>
-              <div class="sk-row"><div class="sk-hdr"><span class="sk-name">XGBoost / RandomForest</span><span class="sk-pct" style="color:var(--green)">90%</span></div><div class="sk-bg"><div class="sk-fill" style="width:90%;background:var(--green);"></div></div></div>
-              <div class="sk-row"><div class="sk-hdr"><span class="sk-name">HuggingFace / NLP</span><span class="sk-pct" style="color:var(--purple)">84%</span></div><div class="sk-bg"><div class="sk-fill" style="width:84%;background:var(--purple);"></div></div></div>
-              <div class="sk-row"><div class="sk-hdr"><span class="sk-name">LangChain / RAG</span><span class="sk-pct" style="color:var(--teal)">80%</span></div><div class="sk-bg"><div class="sk-fill" style="width:80%;background:var(--teal);"></div></div></div>
+              <div class="sg-title">AI Agents &amp; Tooling</div>
+              <div class="sk-row"><div class="sk-hdr"><span class="sk-name">Claude Code</span><span class="sk-pct" style="color:var(--orange)">93%</span></div><div class="sk-bg"><div class="sk-fill" style="width:93%;background:var(--orange);"></div></div></div>
+              <div class="sk-row"><div class="sk-hdr"><span class="sk-name">MCP</span><span class="sk-pct" style="color:var(--pink)">85%</span></div><div class="sk-bg"><div class="sk-fill" style="width:85%;background:var(--pink);"></div></div></div>
+              <div class="sk-row"><div class="sk-hdr"><span class="sk-name">Agentic Workflows</span><span class="sk-pct" style="color:var(--green)">88%</span></div><div class="sk-bg"><div class="sk-fill" style="width:88%;background:var(--green);"></div></div></div>
+              <div class="sk-row"><div class="sk-hdr"><span class="sk-name">Tool Calling</span><span class="sk-pct" style="color:var(--purple)">86%</span></div><div class="sk-bg"><div class="sk-fill" style="width:86%;background:var(--purple);"></div></div></div>
+              <div class="sk-row"><div class="sk-hdr"><span class="sk-name">Prompt &amp; Context Eng.</span><span class="sk-pct" style="color:var(--teal)">90%</span></div><div class="sk-bg"><div class="sk-fill" style="width:90%;background:var(--teal);"></div></div></div>
             </div>
 
             <div>
-              <div class="sg-title">Data Engineering</div>
-              <div class="sk-row"><div class="sk-hdr"><span class="sk-name">Airflow</span><span class="sk-pct" style="color:var(--blue)">85%</span></div><div class="sk-bg"><div class="sk-fill" style="width:85%;background:var(--blue);"></div></div></div>
+              <div class="sg-title">Full-Stack &amp; Machine Learning</div>
+              <div class="sk-row"><div class="sk-hdr"><span class="sk-name">React / Next.js / Vite</span><span class="sk-pct" style="color:var(--sky)">90%</span></div><div class="sk-bg"><div class="sk-fill" style="width:90%;background:var(--sky);"></div></div></div>
+              <div class="sk-row"><div class="sk-hdr"><span class="sk-name">FastAPI</span><span class="sk-pct" style="color:var(--green)">88%</span></div><div class="sk-bg"><div class="sk-fill" style="width:88%;background:var(--green);"></div></div></div>
+              <div class="sk-row"><div class="sk-hdr"><span class="sk-name">scikit-learn / XGBoost</span><span class="sk-pct" style="color:var(--orange)">90%</span></div><div class="sk-bg"><div class="sk-fill" style="width:90%;background:var(--orange);"></div></div></div>
+              <div class="sk-row"><div class="sk-hdr"><span class="sk-name">PyTorch / TensorFlow</span><span class="sk-pct" style="color:var(--pink)">80%</span></div><div class="sk-bg"><div class="sk-fill" style="width:80%;background:var(--pink);"></div></div></div>
+              <div class="sk-row"><div class="sk-hdr"><span class="sk-name">HuggingFace / RAG</span><span class="sk-pct" style="color:var(--purple)">84%</span></div><div class="sk-bg"><div class="sk-fill" style="width:84%;background:var(--purple);"></div></div></div>
+            </div>
+
+            <div>
+              <div class="sg-title">Data Engineering &amp; Databases</div>
+              <div class="sk-row"><div class="sk-hdr"><span class="sk-name">Airflow / AWS Glue / dbt</span><span class="sk-pct" style="color:var(--blue)">85%</span></div><div class="sk-bg"><div class="sk-fill" style="width:85%;background:var(--blue);"></div></div></div>
               <div class="sk-row"><div class="sk-hdr"><span class="sk-name">Snowflake / BigQuery</span><span class="sk-pct" style="color:var(--green)">88%</span></div><div class="sk-bg"><div class="sk-fill" style="width:88%;background:var(--green);"></div></div></div>
-              <div class="sk-row"><div class="sk-hdr"><span class="sk-name">Spark / Hadoop</span><span class="sk-pct" style="color:var(--yellow)">75%</span></div><div class="sk-bg"><div class="sk-fill" style="width:75%;background:var(--yellow);"></div></div></div>
-              <div class="sk-row"><div class="sk-hdr"><span class="sk-name">dbt</span><span class="sk-pct" style="color:var(--orange)">78%</span></div><div class="sk-bg"><div class="sk-fill" style="width:78%;background:var(--orange);"></div></div></div>
-              <div class="sk-row"><div class="sk-hdr"><span class="sk-name">PostgreSQL / MySQL</span><span class="sk-pct" style="color:var(--teal)">90%</span></div><div class="sk-bg"><div class="sk-fill" style="width:90%;background:var(--teal);"></div></div></div>
+              <div class="sk-row"><div class="sk-hdr"><span class="sk-name">PostgreSQL / Supabase</span><span class="sk-pct" style="color:var(--teal)">92%</span></div><div class="sk-bg"><div class="sk-fill" style="width:92%;background:var(--teal);"></div></div></div>
+              <div class="sk-row"><div class="sk-hdr"><span class="sk-name">NoSQL</span><span class="sk-pct" style="color:var(--yellow)">75%</span></div><div class="sk-bg"><div class="sk-fill" style="width:75%;background:var(--yellow);"></div></div></div>
             </div>
 
             <div>
-              <div class="sg-title">Cloud · Infra · Visualization</div>
+              <div class="sg-title">Cloud &amp; Infrastructure</div>
+              <div class="sk-row"><div class="sk-hdr"><span class="sk-name">Git / Version Control</span><span class="sk-pct" style="color:var(--pink)">95%</span></div><div class="sk-bg"><div class="sk-fill" style="width:95%;background:var(--pink);"></div></div></div>
               <div class="sk-row"><div class="sk-hdr"><span class="sk-name">AWS (S3, EC2, SageMaker)</span><span class="sk-pct" style="color:var(--orange)">85%</span></div><div class="sk-bg"><div class="sk-fill" style="width:85%;background:var(--orange);"></div></div></div>
               <div class="sk-row"><div class="sk-hdr"><span class="sk-name">GCP (BigQuery, Storage)</span><span class="sk-pct" style="color:var(--blue)">80%</span></div><div class="sk-bg"><div class="sk-fill" style="width:80%;background:var(--blue);"></div></div></div>
+              <div class="sk-row"><div class="sk-hdr"><span class="sk-name">Azure (Data Factory, Synapse)</span><span class="sk-pct" style="color:var(--purple)">70%</span></div><div class="sk-bg"><div class="sk-fill" style="width:70%;background:var(--purple);"></div></div></div>
+              <div class="sk-row"><div class="sk-hdr"><span class="sk-name">Docker / Kubernetes</span><span class="sk-pct" style="color:var(--teal)">76%</span></div><div class="sk-bg"><div class="sk-fill" style="width:76%;background:var(--teal);"></div></div></div>
+            </div>
+
+            <div>
+              <div class="sg-title">Analytics &amp; Visualization</div>
               <div class="sk-row"><div class="sk-hdr"><span class="sk-name">Tableau</span><span class="sk-pct" style="color:var(--pink)">92%</span></div><div class="sk-bg"><div class="sk-fill" style="width:92%;background:var(--pink);"></div></div></div>
               <div class="sk-row"><div class="sk-hdr"><span class="sk-name">Power BI</span><span class="sk-pct" style="color:var(--yellow)">82%</span></div><div class="sk-bg"><div class="sk-fill" style="width:82%;background:var(--yellow);"></div></div></div>
-              <div class="sk-row"><div class="sk-hdr"><span class="sk-name">Docker / Kubernetes</span><span class="sk-pct" style="color:var(--teal)">76%</span></div><div class="sk-bg"><div class="sk-fill" style="width:76%;background:var(--teal);"></div></div></div>
+              <div class="sk-row"><div class="sk-hdr"><span class="sk-name">Looker (Data Studio)</span><span class="sk-pct" style="color:var(--green)">75%</span></div><div class="sk-bg"><div class="sk-fill" style="width:75%;background:var(--green);"></div></div></div>
+              <div class="sk-row"><div class="sk-hdr"><span class="sk-name">Excel (Advanced, VBA)</span><span class="sk-pct" style="color:var(--blue)">88%</span></div><div class="sk-bg"><div class="sk-fill" style="width:88%;background:var(--blue);"></div></div></div>
             </div>
 
           </div>
@@ -774,66 +842,64 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:13
           <div class="exp-timeline">
 
             <div class="exp-item">
+              <div class="exp-dot" style="background:var(--orange);box-shadow:0 0 0 3px rgba(250,179,135,.18);"></div>
+              <div class="exp-date">Feb 2026 — Present</div>
+              <div class="exp-role">Founding Engineer</div>
+              <div class="exp-co">Atelier <span>· getatelier.io · New York, NY</span></div>
+              <ul class="exp-bullets">
+                <li>Founded and built a <b>multi-tenant cloud ERP/OMS SaaS platform</b> for diamond wholesalers, architecting the full stack from React/TypeScript/Vite frontend to Python/FastAPI/PostgreSQL backend with multi-tenant JWT auth</li>
+                <li>Shipped an <b>AI-powered memo and invoice scanning pipeline</b> using GIA/IGI certification data and fuzzy vendor matching, automating lot classification and reducing manual data entry</li>
+                <li>Built a full CRM and email campaign system with segmentation, deal pipelines, and Resend-powered open/click tracking, plus a self-serve account portal with <b>Stripe billing</b> and Google OAuth</li>
+                <li>Deployed and maintained production infrastructure (Railway, Vercel, Supabase), resolving cross-stack issues spanning payments, auth, and networking to keep the platform stable end to end</li>
+              </ul>
+              <div class="exp-tags">
+                <span class="exp-tag">React</span><span class="exp-tag">TypeScript</span><span class="exp-tag">Vite</span><span class="exp-tag">FastAPI</span><span class="exp-tag">PostgreSQL</span><span class="exp-tag">Supabase</span><span class="exp-tag">Stripe</span><span class="exp-tag">Railway</span><span class="exp-tag">Vercel</span>
+              </div>
+            </div>
+
+            <div class="exp-item">
               <div class="exp-dot"></div>
-              <div class="exp-date">Jan 2025 — Present</div>
-              <div class="exp-role">Data &amp; Operations Analyst</div>
+              <div class="exp-date">May 2024 — Present</div>
+              <div class="exp-role">Data and Research Analyst</div>
               <div class="exp-co">Avitan <span>· New York, NY</span></div>
               <ul class="exp-bullets">
-                <li>Designed predictive analytics &amp; performance monitoring models; enabled leadership to track strategic KPIs across trading performance and inventory turnover</li>
-                <li>Led firm-wide market &amp; pricing strategy analysis leveraging RAPNET and transactional data — drove <b>22% increase in profit margins</b> across high-volume product lines</li>
-                <li>Automated end-to-end stock and transaction management (AWS S3, PostgreSQL, Airflow), improving platform visibility and resource allocation</li>
-                <li>Built dynamic pricing models and forecasting frameworks for global supplier contracts</li>
+                <li>Design and maintain <b>KPI reporting frameworks</b> and analytical dashboards in Tableau to evaluate pricing effectiveness, market performance, and operational throughput</li>
+                <li>Analyze inventory lifecycle data — stock movement, order fulfillment, resource allocation — to identify inefficiencies and recommend optimization strategies aligned with market demand forecasts</li>
+                <li>Apply predictive modeling and mathematical optimization (Python, SQL) to trading performance, pricing trends, and inventory turnover, translating outputs into actionable strategy for senior management</li>
+                <li>Developed an <b>AI-powered decision support application</b> enabling management to generate market research reports and data summaries through natural language queries</li>
               </ul>
               <div class="exp-tags">
-                <span class="exp-tag">Python</span><span class="exp-tag">SQL</span><span class="exp-tag">Tableau</span><span class="exp-tag">AWS S3</span><span class="exp-tag">PostgreSQL</span><span class="exp-tag">Airflow</span><span class="exp-tag">RAPNET</span>
+                <span class="exp-tag">Python</span><span class="exp-tag">SQL</span><span class="exp-tag">Tableau</span><span class="exp-tag">Predictive Modeling</span><span class="exp-tag">Optimization</span>
               </div>
             </div>
 
             <div class="exp-item">
               <div class="exp-dot"></div>
-              <div class="exp-date">May 2024 — Dec 2024</div>
-              <div class="exp-role">Specialist — Data Analysis</div>
-              <div class="exp-co">Maitri Solutions <span>· New York, NY</span></div>
+              <div class="exp-date">Jun 2023 — May 2024</div>
+              <div class="exp-role">Data Analyst</div>
+              <div class="exp-co">GalaGoods <span>(now Imagine Engine) · Remote, US</span></div>
               <ul class="exp-bullets">
-                <li>Built executive-level Tableau &amp; Power BI dashboards tracking real-time operational and financial KPIs</li>
-                <li>Developed statistical models (Statsmodels) to quantify operational risks and market volatility for executive decision-making</li>
-                <li>Automated large-scale data ingestion and reporting with SQL + Docker-based systems — <b>reduced manual effort by 70%</b></li>
-                <li>Designed and implemented a data quality framework improving reliability across departments</li>
+                <li>Designed and executed end-to-end empirical research projects on large, diverse datasets to uncover performance signals and drive platform optimization decisions</li>
+                <li>Built scalable ETL pipelines that <b>cut report processing time by 40%</b> and <b>reduced monthly infrastructure costs by 18%</b>, enabling faster iteration on research hypotheses</li>
+                <li>Collaborated cross-functionally in Agile environments to deliver automated data validation, reliable BI KPIs, and forecasting models</li>
               </ul>
               <div class="exp-tags">
-                <span class="exp-tag">Tableau</span><span class="exp-tag">Power BI</span><span class="exp-tag">Python</span><span class="exp-tag">Statsmodels</span><span class="exp-tag">SQL</span><span class="exp-tag">Docker</span>
-              </div>
-            </div>
-
-            <div class="exp-item">
-              <div class="exp-dot"></div>
-              <div class="exp-date">Jun 2023 — Jan 2024</div>
-              <div class="exp-role">Data Scientist (Internship)</div>
-              <div class="exp-co">GALA <span>· Orlando, FL</span></div>
-              <ul class="exp-bullets">
-                <li>Built scalable ETL pipelines (Airflow, AWS Glue) — improved daily report processing time by <b>40%</b></li>
-                <li>Established automated data validation pipelines delivering consistent BI KPIs for firm-wide forecasting</li>
-                <li>Optimized cloud infrastructure on AWS (Redshift, EC2, S3) — achieved <b>18% reduction</b> in monthly operational costs</li>
-                <li>Collaborated with engineering and business teams in Agile to align technical implementations with strategy</li>
-              </ul>
-              <div class="exp-tags">
-                <span class="exp-tag">Airflow</span><span class="exp-tag">AWS Glue</span><span class="exp-tag">Redshift</span><span class="exp-tag">EC2</span><span class="exp-tag">S3</span><span class="exp-tag">Agile</span>
+                <span class="exp-tag">ETL</span><span class="exp-tag">Python</span><span class="exp-tag">Agile</span><span class="exp-tag">BI</span>
               </div>
             </div>
 
             <div class="exp-item">
               <div class="exp-dot"></div>
               <div class="exp-date">Jan 2020 — Jul 2022</div>
-              <div class="exp-role">Data Scientist (Part Time)</div>
-              <div class="exp-co">Grownited <span>· Ahmedabad, India</span></div>
+              <div class="exp-role">Data Analyst</div>
+              <div class="exp-co">Reitz Financial <span>· Ahmedabad, India</span></div>
               <ul class="exp-bullets">
-                <li>Designed and optimized ETL pipelines integrating multi-source business data into centralized warehouses</li>
-                <li>Built predictive models to forecast customer engagement and retention — <b>improved campaign ROI by 15%</b></li>
-                <li>Developed interactive Tableau dashboards and SQL-based reporting solutions for senior management</li>
-                <li>Automated recurring Excel + Python workflows, <b>reducing manual reporting time by 30%</b></li>
+                <li>Developed and validated predictive models to forecast customer engagement and retention using regression and clustering — <b>improved campaign ROI by 15%</b></li>
+                <li>Automated data ingestion, quality checks, and reporting pipelines using SQL and Docker, <b>reducing manual effort by 70%</b></li>
+                <li>Built executive dashboards in Tableau and Power BI to monitor real-time operational and financial KPIs</li>
               </ul>
               <div class="exp-tags">
-                <span class="exp-tag">ETL</span><span class="exp-tag">Tableau</span><span class="exp-tag">SQL</span><span class="exp-tag">Python</span><span class="exp-tag">Excel/VBA</span>
+                <span class="exp-tag">SQL</span><span class="exp-tag">Docker</span><span class="exp-tag">Tableau</span><span class="exp-tag">Power BI</span><span class="exp-tag">Regression</span><span class="exp-tag">Clustering</span>
               </div>
             </div>
 
@@ -853,7 +919,11 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:13
           <div class="contact-block">
             <div class="contact-line">
               <span class="contact-key">email</span>
-              <span class="contact-val"><a href="mailto:hisiddharth09@gmail.com">hisiddharth09@gmail.com</a></span>
+              <span class="contact-val"><a href="mailto:ss16130@nyu.edu">ss16130@nyu.edu</a></span>
+            </div>
+            <div class="contact-line">
+              <span class="contact-key">atelier</span>
+              <span class="contact-val"><a href="https://getatelier.io" target="_blank">getatelier.io</a></span>
             </div>
             <div class="contact-line">
               <span class="contact-key">linkedin</span>
@@ -890,11 +960,11 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:13
                 <div class="building-badge"><div class="building-dot"></div> actively building</div>
               </div>
             </div>
-            <p class="proj-desc" style="font-size:13px;">Helping international students find roommates, apartments, and community in NYC through a full-stack web platform. Built for the unique challenges of newcomers navigating housing in a city as dense and expensive as New York — combining verified listings, roommate matching, and a trusted community layer.</p>
+            <p class="proj-desc" style="font-size:13px;">A community platform for international students to find roommates and apartments in NYC through profile-based matching and forums — built for the unique challenges of newcomers navigating housing in a city as dense and expensive as New York.</p>
             <br>
             <div class="sg-title">Stack</div>
             <div class="proj-tags" style="margin-bottom:16px;">
-              <span class="proj-tag">Python</span><span class="proj-tag">React</span><span class="proj-tag">PostgreSQL</span><span class="proj-tag">Full Stack</span>
+              <span class="proj-tag">Python</span><span class="proj-tag">React</span><span class="proj-tag">Supabase</span>
             </div>
             <div class="sg-title">Status</div>
             <div style="font-size:12.5px;color:var(--muted);">
@@ -908,28 +978,83 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:13
 
         <!-- ═══════════ ATELIER ═══════════ -->
         <div class="page scrollable" id="page-atelier">
-          <div class="cm">// atelier.ts — currently building 🚧</div>
+          <div class="cm">// atelier.ts — founded &amp; building, Feb 2026–Present 💎</div>
           <br>
           <div class="proj-card building" style="max-width:680px;">
             <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px;">
               <span style="font-size:32px;">💎</span>
               <div>
                 <div class="proj-title" style="font-size:18px;margin-bottom:2px;">Atelier</div>
-                <div class="building-badge"><div class="building-dot"></div> actively building</div>
+                <div class="building-badge"><div class="building-dot"></div> founding engineer · live &amp; shipping</div>
               </div>
             </div>
-            <p class="proj-desc" style="font-size:13px;">A modern, multi-tenant cloud ERP for diamond wholesalers — replacing legacy desktop software used by the $80B diamond trading industry. AI-powered natural language reporting lets users query their business in plain English. RapNet integration for real-time market pricing, and a complete inventory management system purpose-built for how the trade actually works.</p>
+            <p class="proj-desc" style="font-size:13px;">A multi-tenant cloud ERP/OMS SaaS platform for diamond wholesalers — founded and built solo, architecting the full stack from a React/TypeScript/Vite frontend to a Python/FastAPI/PostgreSQL backend with multi-tenant JWT auth.</p>
             <br>
             <div class="sg-title">Stack</div>
             <div class="proj-tags" style="margin-bottom:16px;">
-              <span class="proj-tag">React</span><span class="proj-tag">FastAPI</span><span class="proj-tag">Supabase</span><span class="proj-tag">AI/NLP</span><span class="proj-tag">RapNet API</span><span class="proj-tag">Multi-tenant</span>
+              <span class="proj-tag">React</span><span class="proj-tag">TypeScript</span><span class="proj-tag">Vite</span><span class="proj-tag">FastAPI</span><span class="proj-tag">PostgreSQL</span><span class="proj-tag">Supabase</span><span class="proj-tag">Stripe</span><span class="proj-tag">Railway</span><span class="proj-tag">Vercel</span>
             </div>
-            <div class="sg-title">Key Features</div>
+            <div class="sg-title">Shipped Features</div>
             <div style="font-size:12.5px;color:var(--muted);">
-              <div style="margin-bottom:6px;">▸ <span style="color:var(--green);">✓</span> Multi-tenant architecture</div>
-              <div style="margin-bottom:6px;">▸ <span style="color:var(--orange);">⟳</span> AI natural language reporting</div>
-              <div style="margin-bottom:6px;">▸ <span style="color:var(--orange);">⟳</span> RapNet pricing integration</div>
-              <div>▸ <span style="color:var(--muted);">○</span> Real-time inventory dashboard</div>
+              <div style="margin-bottom:6px;">▸ <span style="color:var(--green);">✓</span> Multi-tenant JWT auth &amp; full ERP/OMS architecture</div>
+              <div style="margin-bottom:6px;">▸ <span style="color:var(--green);">✓</span> AI-powered memo &amp; invoice scanning (GIA/IGI cert data, fuzzy vendor matching)</div>
+              <div style="margin-bottom:6px;">▸ <span style="color:var(--green);">✓</span> Full CRM &amp; email campaigns — segmentation, deal pipelines, Resend open/click tracking</div>
+              <div style="margin-bottom:6px;">▸ <span style="color:var(--green);">✓</span> Self-serve account portal — Stripe billing + Google OAuth</div>
+              <div>▸ <span style="color:var(--orange);">⟳</span> Production infra across Railway, Vercel, Supabase — actively expanding</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ═══════════ CONSTRUCTION OPS ═══════════ -->
+        <div class="page scrollable" id="page-construction">
+          <div class="cm">// construction-ops.tsx — currently building 🚧</div>
+          <br>
+          <div class="proj-card building" style="max-width:680px;">
+            <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px;">
+              <span style="font-size:32px;">🏗️</span>
+              <div>
+                <div class="proj-title" style="font-size:18px;margin-bottom:2px;">Construction Ops Platform</div>
+                <div class="building-badge"><div class="building-dot"></div> actively building</div>
+              </div>
+            </div>
+            <p class="proj-desc" style="font-size:13px;">A bespoke operations platform for a subcontractor construction company, covering job-site tracking, real-time cost and profit margin visibility, and PM progress reporting — plus a bids module to draft estimates and generate client-ready proposals.</p>
+            <br>
+            <div class="sg-title">Stack</div>
+            <div class="proj-tags" style="margin-bottom:16px;">
+              <span class="proj-tag">React</span><span class="proj-tag">TypeScript</span><span class="proj-tag">Vite</span><span class="proj-tag">TailwindCSS</span><span class="proj-tag">FastAPI</span><span class="proj-tag">PostgreSQL</span><span class="proj-tag">Supabase</span>
+            </div>
+            <div class="sg-title">Status</div>
+            <div style="font-size:12.5px;color:var(--muted);">
+              <div style="margin-bottom:6px;">▸ <span style="color:var(--green);">✓</span> Job-site tracking &amp; cost/margin visibility architecture</div>
+              <div style="margin-bottom:6px;">▸ <span style="color:var(--orange);">⟳</span> PM progress reporting module in progress</div>
+              <div>▸ <span style="color:var(--orange);">⟳</span> Bids module for client-ready proposals</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ═══════════ LUMIÈRE ═══════════ -->
+        <div class="page scrollable" id="page-lumiere">
+          <div class="cm">// lumiere.ts — currently building 🚧</div>
+          <br>
+          <div class="proj-card building" style="max-width:680px;">
+            <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px;">
+              <span style="font-size:32px;">✨</span>
+              <div>
+                <div class="proj-title" style="font-size:18px;margin-bottom:2px;">Lumière</div>
+                <div class="building-badge"><div class="building-dot"></div> actively building</div>
+              </div>
+            </div>
+            <p class="proj-desc" style="font-size:13px;">An AI-powered SaaS that generates studio-quality product renders for jewelry brands from raw images, with multi-tenant auth and credit-based billing.</p>
+            <br>
+            <div class="sg-title">Stack</div>
+            <div class="proj-tags" style="margin-bottom:16px;">
+              <span class="proj-tag">Next.js</span><span class="proj-tag">Supabase</span><span class="proj-tag">Prisma</span><span class="proj-tag">Replicate</span><span class="proj-tag">Stripe</span>
+            </div>
+            <div class="sg-title">Status</div>
+            <div style="font-size:12.5px;color:var(--muted);">
+              <div style="margin-bottom:6px;">▸ <span style="color:var(--green);">✓</span> AI render pipeline (Replicate) working end to end</div>
+              <div style="margin-bottom:6px;">▸ <span style="color:var(--orange);">⟳</span> Multi-tenant auth &amp; credit-based billing</div>
+              <div>▸ <span style="color:var(--muted);">○</span> Public beta TBD</div>
             </div>
           </div>
         </div>
@@ -951,14 +1076,14 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:13
       <div class="t-line"><span class="t-out">Welcome to portfolio terminal — type </span><span class="t-cmd">help</span><span class="t-out"> for commands</span></div>
       <div class="t-line">&nbsp;</div>
       <div class="t-line"><span class="t-prompt">siddharth@portfolio</span><span class="t-out">:~$ </span><span class="t-cmd">git log</span></div>
-      <div class="t-line"><span class="t-hash">a9f2d1e</span> <span class="t-branch">(HEAD → main)</span> <span class="t-msg">feat: add Atelier ERP multi-tenant architecture</span></div>
-      <div class="t-line"><span class="t-hash">c7b3f80</span> <span class="t-msg">feat: RAG pipeline with FAISS vector search</span></div>
-      <div class="t-line"><span class="t-hash">e14a92c</span> <span class="t-msg">fix: optimise FastAPI response time for /recommendations</span></div>
-      <div class="t-line"><span class="t-hash">d3f8c4a</span> <span class="t-msg">chore: deploy Neuralearn to AWS EC2</span></div>
-      <div class="t-line"><span class="t-hash">b1e5d72</span> <span class="t-msg">feat: Airflow DAG for stock transaction pipeline @ Avitan</span></div>
-      <div class="t-line"><span class="t-hash">9a2c301</span> <span class="t-msg">feat: PostgreSQL connection pooling + Snowflake integration</span></div>
-      <div class="t-line"><span class="t-hash">77fb4e9</span> <span class="t-msg">data: NYC Taxi BigQuery analytics pipeline complete</span></div>
-      <div class="t-line"><span class="t-hash">3d6a182</span> <span class="t-msg">ml: XGBoost LTV model → 92.01% accuracy on ecomm dataset</span></div>
+      <div class="t-line"><span class="t-hash">a9f2d1e</span> <span class="t-branch">(HEAD → main)</span> <span class="t-msg">feat: Stripe billing + self-serve account portal @ Atelier</span></div>
+      <div class="t-line"><span class="t-hash">c7b3f80</span> <span class="t-msg">feat: AI memo/invoice scanning pipeline with GIA/IGI cert matching</span></div>
+      <div class="t-line"><span class="t-hash">e14a92c</span> <span class="t-msg">feat: CRM + email campaigns with Resend open/click tracking</span></div>
+      <div class="t-line"><span class="t-hash">d3f8c4a</span> <span class="t-msg">feat: bids module for Construction Ops client proposals</span></div>
+      <div class="t-line"><span class="t-hash">b1e5d72</span> <span class="t-msg">feat: Replicate render pipeline for Lumière</span></div>
+      <div class="t-line"><span class="t-hash">9a2c301</span> <span class="t-msg">feat: Supabase auth + profile matching for SafeLanding</span></div>
+      <div class="t-line"><span class="t-hash">77fb4e9</span> <span class="t-msg">feat: AI-powered natural language decision support app @ Avitan</span></div>
+      <div class="t-line"><span class="t-hash">3d6a182</span> <span class="t-msg">chore: deploy production infra to Railway + Vercel</span></div>
       <div class="t-line">&nbsp;</div>
       <div class="t-line"><span class="t-prompt">siddharth@portfolio</span><span class="t-out">:~$ </span><span class="t-cmd">python --version</span></div>
       <div class="t-line"><span class="t-out">Python 3.11.7</span></div>
@@ -1018,50 +1143,6 @@ body{background:var(--bg);color:var(--text);font-family:var(--font);font-size:13
 </div>
 
 <script>
-// ── RESUME CONTEXT FOR AI ──────────────────────────────────────────
-const RESUME_CONTEXT = `You are an AI assistant embedded in Siddharth Shah's developer portfolio website (styled like VS Code). Answer questions about Siddharth concisely and helpfully. Here is everything you know about him:
-
-NAME: Siddharth Shah
-LOCATION: New York, NY
-EMAIL: hisiddharth09@gmail.com
-PHONE: 516-315-4749
-LINKEDIN: linkedin.com/in/siddharth-shah-02bb34143
-GITHUB: github.com/sidshah1921
-TABLEAU: public.tableau.com/app/profile/siddharth.shah7887/vizzes
-
-SUMMARY: Data and Machine Learning Professional with 4+ years of experience in data engineering, business intelligence, and predictive analytics. Proficient in Python, SQL, Tableau, AWS, and cloud-based big data systems. Expertise in KPIs, market analysis, and advanced reporting frameworks.
-
-CURRENT JOB: Data and Operations Analyst at Avitan, New York (Jan 2025–Present). Designed predictive analytics models, led market/pricing strategy using RAPNET data (drove 22% margin increase), automated stock/transaction management with AWS S3, PostgreSQL, Airflow.
-
-PREVIOUS JOBS:
-- Specialist Data Analysis @ Maitri Solutions, NYC (May–Dec 2024): Tableau/Power BI dashboards, statistical models with Statsmodels, automated reporting (reduced manual effort 70%).
-- Data Scientist Intern @ GALA, Orlando (Jun 2023–Jan 2024): ETL pipelines with Airflow/AWS Glue (40% faster reports), optimized AWS infrastructure (18% cost reduction).
-- Data Scientist @ Grownited, India (Jan 2020–Jul 2022): ETL pipelines, predictive retention models (15% better campaign ROI), Tableau dashboards.
-
-EDUCATION:
-- NYU: MS Computer Engineering, GPA 3.8/4.0, 2022–2024
-- GTU: BE Information Technology, GPA 3.9/4.0, 2018–2022
-
-PUBLICATION: IEEE book chapter "Machine Learning in Medicine: Diagnosis of Skin Cancer using SVM Classifier" in "Computational Intelligence based Solutions for Vision System"
-
-PROJECTS:
-1. SafeLanding (building): Full-stack platform helping international students find roommates/apartments in NYC. Stack: Python, React, PostgreSQL.
-2. Atelier (building): Multi-tenant cloud ERP for diamond wholesalers replacing $80B industry legacy software. AI-powered NL reporting, RapNet integration, real-time inventory. Stack: React, FastAPI, Supabase.
-3. Neuralearn: AI tutoring platform using Claude 3.5. Real-time conversational support, personalized lesson plans. Flask + Tailwind + MySQL. 4.3/5 user satisfaction.
-4. RAG-NLP Property Recommendations: RAG system with FAISS vector search and Mistral-7B for property suggestions. 279K+ listing dataset. Stack: Python, HuggingFace, LangChain, FAISS, AWS.
-5. NYC Taxi Insights: End-to-end pipeline on NYC TLC data. Python/Pandas, GCP BigQuery, Tableau dashboards.
-6. eCommerce LTV Prediction: K-Means clustering + RFM analysis, XGBoost/Random Forest, 92.01% accuracy.
-
-TECH SKILLS:
-- Languages: Python, SQL, R, Java, Bash, C++
-- ML/AI: scikit-learn, PyTorch, TensorFlow, XGBoost, RandomForest, HuggingFace Transformers, LangChain, RAG, NLP, deep learning (RNN, CNN, Transformers), LLMs
-- Data Engineering: Airflow, AWS Glue, dbt, Snowflake, Redshift, BigQuery, Spark, Hadoop, MongoDB, DynamoDB
-- Cloud: AWS (S3, EC2, SageMaker, Redshift), GCP (BigQuery, Cloud Storage), Azure (Data Factory, Synapse), Docker, Kubernetes
-- Visualization: Tableau, Power BI, Looker, Matplotlib, Seaborn, Plotly
-- Other: Git, Jupyter, VSCode, Agile/Scrum, Jira, Statsmodels, Hypothesis Testing, A/B Testing, Causal Inference
-
-Keep answers concise (2-4 sentences max unless listing items). Be friendly and professional. If asked about contacting Siddharth, provide his email.`;
-
 // ── PAGE CONFIG ────────────────────────────────────────────────────
 const pages = {
   home:        { file:'home.tsx',       lang:'TypeScript React', icon:'⚛️',  bc:['sidshah1921','src','home.tsx'] },
@@ -1072,6 +1153,8 @@ const pages = {
   contact:     { file:'contact.css',    lang:'CSS',              icon:'📬',  bc:['sidshah1921','src','contact.css'] },
   safelanding: { file:'safelanding.py', lang:'Python',           icon:'🏠',  bc:['sidshah1921','building','safelanding.py'] },
   atelier:     { file:'atelier.ts',     lang:'TypeScript',       icon:'💎',  bc:['sidshah1921','building','atelier.ts'] },
+  construction:{ file:'construction-ops.tsx', lang:'TypeScript React', icon:'🏗️', bc:['sidshah1921','building','construction-ops.tsx'] },
+  lumiere:     { file:'lumiere.ts',     lang:'TypeScript',       icon:'✨',  bc:['sidshah1921','building','lumiere.ts'] },
 };
 
 let openTabs = ['home'];
@@ -1164,28 +1247,28 @@ const termCmds = {
     '  clear          — clear terminal',
   ],
   'git log': () => [
-    '\x1b[33ma9f2d1e\x1b[0m (HEAD → main) feat: add Atelier ERP multi-tenant architecture',
-    'c7b3f80 feat: RAG pipeline with FAISS vector search',
-    'e14a92c fix: optimise FastAPI response time for /recommendations',
-    'd3f8c4a chore: deploy Neuralearn to AWS EC2',
-    'b1e5d72 feat: Airflow DAG for stock transaction pipeline @ Avitan',
-    '9a2c301 feat: PostgreSQL connection pooling + Snowflake integration',
-    '77fb4e9 data: NYC Taxi BigQuery analytics pipeline complete',
-    '3d6a182 ml: XGBoost LTV model → 92.01% accuracy on ecomm dataset',
+    '\x1b[33ma9f2d1e\x1b[0m (HEAD → main) feat: Stripe billing + self-serve account portal @ Atelier',
+    'c7b3f80 feat: AI memo/invoice scanning pipeline with GIA/IGI cert matching',
+    'e14a92c feat: CRM + email campaigns with Resend open/click tracking',
+    'd3f8c4a feat: bids module for Construction Ops client proposals',
+    'b1e5d72 feat: Replicate render pipeline for Lumière',
+    '9a2c301 feat: Supabase auth + profile matching for SafeLanding',
+    '77fb4e9 feat: AI-powered natural language decision support app @ Avitan',
+    '3d6a182 chore: deploy production infra to Railway + Vercel',
   ],
   'git status': () => [
     'On branch main',
     'Your branch is up to date with \'origin/main\'.',
     '',
     'Changes in progress:',
-    '  modified:   safelanding/backend/api/routes.py',
-    '  modified:   atelier/src/components/InventoryDashboard.tsx',
-    '  new file:   atelier/src/services/rapnet.ts',
+    '  modified:   atelier/src/services/rapnet-scanning.ts',
+    '  modified:   construction-ops/src/components/BidsModule.tsx',
+    '  new file:   lumiere/src/lib/replicate-client.ts',
   ],
-  ls: () => ['home.tsx  README.md  projects.js  skills.json  experience.ts  contact.css  safelanding.py  atelier.ts'],
-  whoami: () => ['Siddharth Shah — Data & ML Engineer, NYC', 'MS Computer Engineering, NYU | Currently @ Avitan'],
-  skills: () => ['Python · SQL · PyTorch · TensorFlow · scikit-learn · XGBoost', 'Airflow · dbt · Snowflake · BigQuery · Spark', 'AWS · GCP · Docker · Kubernetes', 'Tableau · Power BI · LangChain · HuggingFace · RAG'],
-  contact: () => ['Email:    hisiddharth09@gmail.com', 'GitHub:   github.com/sidshah1921', 'LinkedIn: linkedin.com/in/siddharth-shah-02bb34143', 'Tableau:  public.tableau.com/siddharth.shah7887'],
+  ls: () => ['home.tsx  README.md  projects.js  skills.json  experience.ts  contact.css  atelier.ts  construction-ops.tsx  lumiere.ts  safelanding.py'],
+  whoami: () => ['Siddharth Shah — Founding Engineer @ Atelier, NYC', 'Data & Research Analyst @ Avitan | MS Computer Engineering, NYU'],
+  skills: () => ['Python · SQL · TypeScript · R · Java · C++', 'Claude Code · MCP · Agentic Workflows · Prompt Engineering', 'React · Next.js · FastAPI · Supabase · PostgreSQL', 'Tableau · Power BI · AWS · GCP · Azure · Docker'],
+  contact: () => ['Email:    ss16130@nyu.edu', 'Atelier:  getatelier.io', 'GitHub:   github.com/sidshah1921', 'LinkedIn: linkedin.com/in/siddharth-shah-02bb34143', 'Tableau:  public.tableau.com/siddharth.shah7887'],
   'python --version': () => ['Python 3.11.7'],
   'node --version': () => ['v20.11.0'],
   pwd: () => ['/home/sidshah1921/portfolio'],
@@ -1241,6 +1324,90 @@ async function askCopilot(question) {
   await sendCopilot();
 }
 
+// ── LOCAL KNOWLEDGE BASE (no backend, no API key, runs entirely client-side) ──
+const COPILOT_TOPICS = [
+  {
+    keywords: ['atelier', 'erp', 'diamond', 'wholesaler', 'founding engineer', 'founder', 'founded'],
+    answer: `<b>Atelier</b> (getatelier.io) is Siddharth's own company — he's the Founding Engineer, building it since Feb 2026. It's a multi-tenant cloud ERP/OMS SaaS platform for diamond wholesalers.<br><br>He built the full stack solo: React/TypeScript/Vite frontend, Python/FastAPI/PostgreSQL backend with multi-tenant JWT auth. Shipped features include AI-powered memo/invoice scanning (GIA/IGI cert matching), a full CRM with Stripe billing, and production infra on Railway, Vercel, and Supabase.`
+  },
+  {
+    keywords: ['construction', 'job-site', 'contractor', 'subcontractor', 'bids'],
+    answer: `Siddharth is building a <b>Construction Ops Platform</b> — a bespoke operations tool for a subcontractor construction company. It covers job-site tracking, real-time cost/margin visibility, PM progress reporting, and a bids module for client-ready proposals.<br><br>Stack: React, TypeScript, Vite, TailwindCSS, FastAPI, PostgreSQL, Supabase.`
+  },
+  {
+    keywords: ['lumiere', 'lumière', 'jewelry render', 'product render', 'replicate'],
+    answer: `<b>Lumière</b> is an AI-powered SaaS Siddharth is building that generates studio-quality product renders for jewelry brands from raw images, with multi-tenant auth and credit-based billing.<br><br>Stack: Next.js, Supabase, Prisma, Replicate, Stripe.`
+  },
+  {
+    keywords: ['safelanding', 'roommate', 'apartment', 'international student'],
+    answer: `<b>SafeLanding</b> is a community platform Siddharth is building to help international students find roommates and apartments in NYC through profile-based matching and forums.<br><br>Stack: Python, React, Supabase.`
+  },
+  {
+    keywords: ['project', 'built', 'building', 'portfolio', 'work on', 'app', 'apps', 'shipped'],
+    answer: `Siddharth is currently building 4 things: <b>Atelier</b> (his own company — a cloud ERP for diamond wholesalers), <b>Construction Ops Platform</b> (ops tool for a subcontractor), <b>Lumière</b> (AI product renders for jewelry brands), and <b>SafeLanding</b> (roommate/apartment finder for international students).<br><br>He's also built <b>Neuralearn</b> (AI tutoring platform), an <b>NYC Taxi analytics pipeline</b>, and an <b>e-commerce LTV prediction model</b>. Ask me about any of these by name!`
+  },
+  {
+    keywords: ['neuralearn', 'tutoring', 'learning assistant'],
+    answer: `<b>Neuralearn</b> is an AI-powered personalized learning assistant with adaptive recommendations, built with PyTorch, TensorFlow, NLP, Flask, React, and MySQL.`
+  },
+  {
+    keywords: ['taxi', 'nyc taxi'],
+    answer: `The <b>NYC Taxi Analysis</b> project delivers an end-to-end analytics solution on NYC Yellow Taxi data — Python, Pandas, SQL, GCP, BigQuery, and Tableau, turning large datasets into actionable insights.`
+  },
+  {
+    keywords: ['ecommerce', 'e-commerce', 'ltv', 'customer value', 'segmentation'],
+    answer: `The <b>e-commerce Customer Value</b> project built a customer segmentation and LTV prediction model to enable targeted marketing strategies, using Python, Pandas, ML, and GridSearchCV.`
+  },
+  {
+    keywords: ['skill', 'tech stack', 'technology', 'languages', 'framework', 'know', 'proficient', 'stack'],
+    answer: `Siddharth's stack spans a lot: <b>Languages</b> — Python, R, SQL, Java, C++, CLI. <b>AI Agents & Tooling</b> — Claude Code, MCP, agentic workflows, prompt & context engineering. <b>Full-Stack</b> — React, Next.js, FastAPI, Supabase, PostgreSQL. <b>ML</b> — deep learning, NLP, RAG, recommender systems. <b>Cloud</b> — AWS, GCP, Azure, Docker, Kubernetes. <b>Analytics</b> — Tableau, Power BI, Looker.`
+  },
+  {
+    keywords: ['experience', 'work history', 'job', 'career', 'role', 'position'],
+    answer: `Siddharth's work history: <b>Founding Engineer @ Atelier</b> (Feb 2026–Present, his own company), <b>Data & Research Analyst @ Avitan</b> (May 2024–Present), <b>Data Analyst @ GalaGoods</b> (now Imagine Engine, Jun 2023–May 2024), and <b>Data Analyst @ Reitz Financial</b> (Jan 2020–Jul 2022) in Ahmedabad, India. Ask me about any of these by name for more detail!`
+  },
+  {
+    keywords: ['avitan'],
+    answer: `At <b>Avitan</b> (Data and Research Analyst, May 2024–Present), Siddharth designs KPI reporting frameworks and Tableau dashboards for pricing and market performance, analyzes inventory lifecycle data, applies predictive modeling to trading performance, and built an AI-powered decision support app for natural language market research queries.`
+  },
+  {
+    keywords: ['galagoods', 'imagine engine', 'gala'],
+    answer: `At <b>GalaGoods</b> (now Imagine Engine, Jun 2023–May 2024), Siddharth designed empirical research projects on large datasets and built ETL pipelines that cut report processing time by 40% and infrastructure costs by 18%.`
+  },
+  {
+    keywords: ['reitz', 'financial'],
+    answer: `At <b>Reitz Financial</b> (Jan 2020–Jul 2022, Ahmedabad, India), Siddharth built predictive models for customer retention that improved campaign ROI by 15%, and automated data pipelines that cut manual effort by 70%.`
+  },
+  {
+    keywords: ['education', 'degree', 'university', 'school', 'nyu', 'gtu', 'study', 'studied'],
+    answer: `Siddharth holds an <b>MS in Computer Engineering from NYU</b> (2022–2024) and a <b>BE in Information Technology from Gujarat Technological University</b> (2018–2022).`
+  },
+  {
+    keywords: ['publication', 'ieee', 'book chapter', 'paper', 'research'],
+    answer: `Siddharth co-authored an <b>IEEE book chapter</b>, "Machine Learning in Medicine," applying ML techniques to medical diagnosis.`
+  },
+  {
+    keywords: ['contact', 'reach', 'email', 'hire', 'linkedin', 'github', 'get in touch', 'connect'],
+    answer: `You can reach Siddharth at <b>ss16130@nyu.edu</b>, or find him on <b>LinkedIn</b> (linkedin.com/in/siddharth-shah-02bb34143), <b>GitHub</b> (github.com/sidshah1921), or check out his company at <b>getatelier.io</b>.`
+  },
+  {
+    keywords: ['hi', 'hello', 'hey', 'sup', 'yo'],
+    answer: `Hey! 👋 Ask me about Siddharth's projects, work experience, skills, or how to get in touch.`
+  },
+];
+
+function getLocalAnswer(question) {
+  const q = question.toLowerCase();
+  let best = null, bestScore = 0;
+  for (const topic of COPILOT_TOPICS) {
+    let score = 0;
+    for (const kw of topic.keywords) if (q.includes(kw)) score++;
+    if (score > bestScore) { bestScore = score; best = topic; }
+  }
+  if (best) return best.answer;
+  return `I don't have a specific answer for that, but you can ask me about Siddharth's <b>projects</b> (Atelier, Construction Ops, Lumière, SafeLanding), his <b>work experience</b>, <b>skills</b>, <b>education</b>, or how to <b>contact</b> him directly at ss16130@nyu.edu.`;
+}
+
 async function sendCopilot() {
   const input = document.getElementById('cop-input');
   const question = input.value.trim();
@@ -1270,25 +1437,12 @@ async function sendCopilot() {
 
   copilotHistory.push({ role: 'user', content: question });
 
-  try {
-    const response = await fetch('https://api.anthropic.com/v1/messages', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        model: 'claude-sonnet-4-20250514',
-        max_tokens: 400,
-        system: RESUME_CONTEXT,
-        messages: copilotHistory,
-      })
-    });
-    const data = await response.json();
-    const answer = data.content?.[0]?.text || 'Sorry, I had trouble answering that. Please try again.';
-    copilotHistory.push({ role: 'assistant', content: answer });
+  // Simulate a brief "thinking" delay for a natural feel, then answer locally.
+  const answer = getLocalAnswer(question);
+  await new Promise(r => setTimeout(r, 450 + Math.random() * 400));
 
-    typing.innerHTML = answer.replace(/\*\*(.*?)\*\*/g, '<b>$1</b>').replace(/\n/g, '<br>');
-  } catch (err) {
-    typing.innerHTML = 'Network error. <b>Email Siddharth directly:</b> hisiddharth09@gmail.com';
-  }
+  copilotHistory.push({ role: 'assistant', content: answer });
+  typing.innerHTML = answer;
 
   btn.disabled = false;
   msgs.scrollTop = msgs.scrollHeight;
@@ -1324,8 +1478,10 @@ const PALETTE_ITEMS = [
   { type:'file', icon:'🔧', name:'skills.json', path:'data/', page:'skills' },
   { type:'file', icon:'💼', name:'experience.ts', path:'src/', page:'experience' },
   { type:'file', icon:'📬', name:'contact.css', path:'src/', page:'contact' },
-  { type:'file', icon:'🏠', name:'safelanding.py', path:'building/', page:'safelanding' },
   { type:'file', icon:'💎', name:'atelier.ts', path:'building/', page:'atelier' },
+  { type:'file', icon:'🏗️', name:'construction-ops.tsx', path:'building/', page:'construction' },
+  { type:'file', icon:'✨', name:'lumiere.ts', path:'building/', page:'lumiere' },
+  { type:'file', icon:'🏠', name:'safelanding.py', path:'building/', page:'safelanding' },
 ];
 
 let paletteSelectedIdx = 0;
